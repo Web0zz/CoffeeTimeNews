@@ -16,7 +16,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun BoxScope.appNameText(
     smalltextStyle: TextStyle,
-    bigtextStyle: TextStyle
+    bigtextStyle: TextStyle,
+    topPadding: Float
 ) {
     Text(
         text = "Coffee",
@@ -39,6 +40,6 @@ fun BoxScope.appNameText(
         ),
         color = MaterialTheme.colors.onPrimary,
         modifier = Modifier
-            .padding(top = 40.dp)
+            .padding(top = topPadding.dp)
     )
 }

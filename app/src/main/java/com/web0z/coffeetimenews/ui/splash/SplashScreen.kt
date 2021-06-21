@@ -46,7 +46,8 @@ fun SplashScreen() {
         ) {
             appNameText(
                 smalltextStyle = CoffeeTimeNewsTypography.h2,
-                bigtextStyle = CoffeeTimeNewsTypography.h1
+                bigtextStyle = CoffeeTimeNewsTypography.h1,
+                topPadding = 40f
             )
         }
     }

@@ -14,15 +14,3 @@ fun CoffeeTimeNewsApp(
         SplashScreen()
     }
 }
-
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DarkThemePreview() {
-    CoffeeTimeNewsApp()
-}
-
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun LightThemePreview() {
-    CoffeeTimeNewsApp()
-}

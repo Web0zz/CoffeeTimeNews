@@ -37,18 +37,18 @@ val CoffeeTimeNewsTypography = Typography(
     ),
     h4 = TextStyle(
         fontFamily = AndadaSC,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 30.sp
     ),
     h5 = TextStyle(
         fontFamily = AndadaSC,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 24.sp
     ),
     h6 = TextStyle(
         fontFamily = AndadaSC,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp
     ),
     subtitle1 = TextStyle(
         fontFamily = Andada,

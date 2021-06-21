@@ -10,8 +10,13 @@
         <entry key="../../../../layout/compose-model-1624211395030.xml" value="0.2" />
         <entry key="../../../../layout/compose-model-1624287152598.xml" value="0.16" />
         <entry key="../../../../layout/compose-model-1624287152773.xml" value="0.1540551839464883" />
+        <entry key="../../../../layout/compose-model-1624291661808.xml" value="0.1540551839464883" />
+        <entry key="../../../../layout/compose-model-1624291677388.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/appname.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/dark_icon.xml" value="0.1885" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/light_icon.xml" value="0.16" />
+        <entry key="app/src/main/res/drawable/light_mode_icon.xml" value="0.1885" />
       </map>
     </option>
   </component>
