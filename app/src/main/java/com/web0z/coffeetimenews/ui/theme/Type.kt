@@ -46,7 +46,7 @@ val CoffeeTimeNewsTypography = Typography(
         fontSize = 24.sp
     ),
     h6 = TextStyle(
-        fontFamily = AndadaSC,
+        fontFamily = Andada,
         fontWeight = FontWeight.Normal,
         fontSize = 18.sp
     ),
@@ -79,7 +79,7 @@ val CoffeeTimeNewsTypography = Typography(
     ),
     caption = TextStyle(
         fontFamily = Andada,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 10.sp
     ),
     overline = TextStyle(

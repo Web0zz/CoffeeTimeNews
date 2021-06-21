@@ -4,6 +4,7 @@ buildscript {
         compose_version = '1.0.0-beta09'
         kotlin_version = '1.5.10'
         coroutines_version = '1.4.2'
+        ext.accompanist_version = '0.12.0'
     }
     repositories {
         google()
