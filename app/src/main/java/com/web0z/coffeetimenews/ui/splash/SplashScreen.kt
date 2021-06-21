@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
+import com.web0z.coffeetimenews.ui.util.appNameText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -43,28 +44,9 @@ fun SplashScreen() {
                 .align(Alignment.TopCenter)
                 .padding(top = 550.dp)
         ) {
-            Text(
-                text = "Coffee",
-                style = CoffeeTimeNewsTypography.h2.merge(
-                    TextStyle(
-                        shadow = Shadow(color = MaterialTheme.colors.onPrimary, Offset(0f, 4f), 8f)
-                    )
-                ),
-                color = MaterialTheme.colors.onPrimary,
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
-            )
-            Text(
-                text = "TimeNews",
-                textAlign = TextAlign.Center,
-                style = CoffeeTimeNewsTypography.h1.merge(
-                    TextStyle(
-                        shadow = Shadow(color = MaterialTheme.colors.onPrimary, Offset(0f, 4f), 8f)
-                    )
-                ),
-                color = MaterialTheme.colors.onPrimary,
-                modifier = Modifier
-                    .padding(top = 40.dp)
+            appNameText(
+                smalltextStyle = CoffeeTimeNewsTypography.h2,
+                bigtextStyle = CoffeeTimeNewsTypography.h1
             )
         }
     }
