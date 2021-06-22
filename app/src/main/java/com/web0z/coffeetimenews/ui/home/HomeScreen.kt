@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.util.ArticleList
+import com.web0z.coffeetimenews.ui.util.SectionList
 
 @ExperimentalPagerApi
 @Composable
@@ -41,6 +42,13 @@ fun HomeScreen() {
                         elevation = 4.dp
                     ),
                 onItemSelect = {  /* TODO function will taken from viewmodel later */ }
+            )
+            NewsListBody(
+                modifier = Modifier
+                    .padding(
+                        top = 368.dp,
+                    ),
+                sectionList = SectionList
             )
         }
     }

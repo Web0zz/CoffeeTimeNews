@@ -28,7 +28,9 @@ import com.web0z.coffeetimenews.ui.util.ArticleList
 data class Article(
     val poster: Int,
     val title: String,
-    val author: String
+    val author: String,
+    var date: String = "June 22",
+    var section: String = "Science"
 )
 
 @ExperimentalPagerApi
