@@ -4,12 +4,15 @@ import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,8 +57,8 @@ fun NewsListBody(
                 },
                 selected = pagerState.currentPage == index,
                 onClick = { /*TODO*/ },
-                selectedContentColor = lightDark.copy(alpha = 0.95f),
-                unselectedContentColor = lightDark.copy(alpha = 0.6f)
+                selectedContentColor = MaterialTheme.colors.onPrimary.copy(alpha = 0.95f),
+                unselectedContentColor = Color.Red
             )
         }
     }
@@ -64,12 +67,13 @@ fun NewsListBody(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding( top = 428.dp )
+            .padding(top = 318.dp)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         ArticleList.forEach{ article ->
             ArticleListContent(
                 modifier = Modifier
-                    .padding(top = 17.dp)
                     .width(375.dp)
                     .height(97.dp)
                     .shadow(4.dp)

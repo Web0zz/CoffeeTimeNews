@@ -1,5 +1,6 @@
 package com.web0z.coffeetimenews.ui.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,9 +22,13 @@ import com.web0z.coffeetimenews.ui.util.appNameText
 fun TopBar() {
     Box(
         Modifier
-            .padding(start = 14.dp)
+            .padding(
+                start = 14.dp,
+                top = 25.dp
+            )
             .width(361.dp)
             .height(46.dp)
+            .background(MaterialTheme.colors.primary)
     ) {
         Box {
             appNameText(
