@@ -82,7 +82,8 @@ private fun BodyContent() {
                 .padding(
                     top = 248.dp,
                 ),
-            sectionList = SectionList
+            sectionList = SectionList,
+            navigateToArticle = { },
         )
     }
 }
