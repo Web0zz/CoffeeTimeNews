@@ -16,7 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
-import com.web0z.coffeetimenews.ui.util.appNameText
+import com.web0z.coffeetimenews.ui.util.AppNameText
 
 @Composable
 fun TopBar() {
@@ -31,7 +31,7 @@ fun TopBar() {
             .background(MaterialTheme.colors.primary)
     ) {
         Box {
-            appNameText(
+            AppNameText(
                 smalltextStyle = CoffeeTimeNewsTypography.h6,
                 bigtextStyle = CoffeeTimeNewsTypography.h5,
                 topPadding = 15.73f

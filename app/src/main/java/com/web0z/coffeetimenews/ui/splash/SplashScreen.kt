@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
-import com.web0z.coffeetimenews.ui.util.appNameText
+import com.web0z.coffeetimenews.ui.util.AppNameText
 
 @Composable
 fun SplashScreen() {
@@ -34,7 +34,7 @@ fun SplashScreen() {
                 .align(Alignment.TopCenter)
                 .padding(top = 550.dp)
         ) {
-            appNameText(
+            AppNameText(
                 smalltextStyle = CoffeeTimeNewsTypography.h2,
                 bigtextStyle = CoffeeTimeNewsTypography.h1,
                 topPadding = 40f
