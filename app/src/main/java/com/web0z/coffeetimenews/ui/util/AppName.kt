@@ -8,16 +8,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BoxScope.appNameText(
+fun BoxScope.AppNameText(
     smalltextStyle: TextStyle,
     bigtextStyle: TextStyle,
-    topPadding: Float
+    topPadding: Float,
+    color: Color = MaterialTheme.colors.onPrimary
 ) {
     Text(
         text = "Coffee",
@@ -26,7 +28,7 @@ fun BoxScope.appNameText(
                 shadow = Shadow(color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f), Offset(0f, 4f), 15f)
             )
         ),
-        color = MaterialTheme.colors.onPrimary,
+        color = color,
         modifier = Modifier
             .align(Alignment.TopCenter)
     )
@@ -38,7 +40,7 @@ fun BoxScope.appNameText(
                 shadow = Shadow(color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f), Offset(0f, 4f), 15f)
             )
         ),
-        color = MaterialTheme.colors.onPrimary,
+        color = color,
         modifier = Modifier
             .padding(top = topPadding.dp)
     )

@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.web0z.coffeetimenews.R
 
-private val Andada = FontFamily(
+val Andada = FontFamily(
     Font(R.font.andada_regular)
 )
 
@@ -55,7 +55,7 @@ val CoffeeTimeNewsTypography = Typography(
     ),
     subtitle2 = TextStyle(
         fontFamily = Andada,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
     ),
     body1 = TextStyle(
