@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.util.ArticleList2
+import com.web0z.coffeetimenews.ui.util.CategoryList
 import com.web0z.coffeetimenews.ui.util.SectionList
 
 @ExperimentalPagerApi
@@ -82,8 +83,12 @@ private fun BodyContent() {
                 .padding(
                     top = 248.dp,
                 ),
-            sectionList = SectionList,
+            sectionList = CategoryList,
             navigateToArticle = { },
+            selectedCategory = CategoryList.first(),
+            onCategorySelected = {
+                //TODO will set viewState
+            }
         )
     }
 }

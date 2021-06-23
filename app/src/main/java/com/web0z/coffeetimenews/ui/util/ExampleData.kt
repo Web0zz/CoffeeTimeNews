@@ -58,6 +58,18 @@ val ArticleList2 = listOf(
     )
 )
 
+data class Category(
+    val id: Int = 0,
+    val name: String
+)
+
+val CategoryList = listOf(
+    Category(id = 1, "Today"),
+    Category(id = 1, "Science"),
+    Category(id = 1, "History"),
+    Category(id = 1, "Politics"),
+    Category(id = 1, "Health"),
+)
 
 val SectionList = listOf(
     "Today",

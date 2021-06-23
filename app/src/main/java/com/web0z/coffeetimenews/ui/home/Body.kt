@@ -1,71 +1,40 @@
 package com.web0z.coffeetimenews.ui.home
 
-import android.content.res.Configuration
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.pagerTabIndicatorOffset
-import com.google.accompanist.pager.rememberPagerState
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
 import com.web0z.coffeetimenews.ui.util.ArticleList
-import com.web0z.coffeetimenews.ui.util.SectionList
+import com.web0z.coffeetimenews.ui.util.Category
 
 @ExperimentalPagerApi
 @Composable
 fun NewsListBody(
     modifier: Modifier,
-    sectionList: List<String>,
+    sectionList: List<Category>,
+    selectedCategory: Category,
+    onCategorySelected: (Category) -> Unit,
     navigateToArticle: (String) -> Unit
 ) {
-    val pagerState = rememberPagerState(pageCount = sectionList.size)
-
-    ScrollableTabRow(
-        selectedTabIndex = pagerState.currentPage,
-        indicator = { tabPositions ->
-            TabRowDefaults.Indicator(
-                Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
-            )
-        },
-        modifier = modifier,
-        backgroundColor = MaterialTheme.colors.primary,
-        edgePadding = 15.dp,
-        tabs = {
-            // TODO function will taken from viewmodel later
-            sectionList.forEachIndexed { index, title ->
-                Tab(
-                    selected = pagerState.currentPage == index,
-                    onClick = {
-
-                    }
-                ) {
-                    Text(
-                        text = title,
-                        style = CoffeeTimeNewsTypography.subtitle1,
-                        color = when(pagerState.currentPage == index) {
-                            true -> MaterialTheme.colors.onPrimary.copy(alpha = 0.95f)
-                            else -> MaterialTheme.colors.onPrimary.copy(alpha = 0.6f)
-                        },
-                        modifier = Modifier.padding(bottom = 10.dp)
-                    )
-                }
-            }
-        }
-    )
+    NewsCategoryTabs(sectionList, selectedCategory, modifier, onCategorySelected)
 
     // TODO will change with lazyColumn
+    NewsList(navigateToArticle)
+}
+
+@Composable
+private fun NewsList(navigateToArticle: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,7 +42,7 @@ fun NewsListBody(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        ArticleList.forEach{ article ->
+        ArticleList.forEach { article ->
             ArticleListContent(
                 modifier = Modifier
                     .width(375.dp)
@@ -83,6 +52,52 @@ fun NewsListBody(
                 article = article,
                 navigateToArticle = navigateToArticle
             )
+        }
+    }
+}
+
+@Composable
+private fun NewsCategoryTabs(
+    sectionList: List<Category>,
+    selectedCategory: Category,
+    modifier: Modifier,
+    onCategorySelected: (Category) -> Unit
+) {
+    val selectedIndex = sectionList.indexOfFirst { it == selectedCategory }
+
+    val categoryTabIndicator = @Composable { tabPositions: List<TabPosition> ->
+        Spacer(
+            modifier = Modifier
+                .tabIndicatorOffset(tabPositions[selectedIndex])
+                .height(2.dp)
+                .background(MaterialTheme.colors.onPrimary)
+        )
+    }
+
+
+    ScrollableTabRow(
+        selectedTabIndex = selectedIndex,
+        indicator = categoryTabIndicator,
+        modifier = modifier,
+        backgroundColor = MaterialTheme.colors.primary,
+        edgePadding = 15.dp,
+    ) {
+        // TODO function will taken from viewmodel later
+        sectionList.forEachIndexed { index, category ->
+            Tab(
+                selected = index == selectedIndex,
+                onClick = { onCategorySelected(category) }
+            ) {
+                Text(
+                    text = category.name,
+                    style = CoffeeTimeNewsTypography.subtitle1,
+                    color = when (selectedIndex == index) {
+                        true -> MaterialTheme.colors.onPrimary.copy(alpha = 0.95f)
+                        else -> MaterialTheme.colors.onPrimary.copy(alpha = 0.6f)
+                    },
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
+            }
         }
     }
 }
@@ -139,52 +154,5 @@ fun ArticleListContent(
                 }
             }
         }
-    }
-}
-
-@ExperimentalPagerApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun PreviewTabLayout() {
-    CoffeeTimeNewsTheme {
-        NewsListBody(
-            modifier = Modifier
-                .padding(
-                    top = 248.dp,
-                ),
-            sectionList = SectionList,
-            navigateToArticle = { },
-        )
-    }
-}
-
-
-@ExperimentalPagerApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun DarkThemePreview() {
-    CoffeeTimeNewsTheme {
-        ArticleListContent(
-            modifier = Modifier
-                .width(375.dp)
-                .height(97.dp),
-            article = ArticleList[0],
-            navigateToArticle = { }
-        )
-    }
-}
-
-@ExperimentalPagerApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-private fun LightThemePreview() {
-    CoffeeTimeNewsTheme {
-        ArticleListContent(
-            modifier = Modifier
-                .width(375.dp)
-                .height(97.dp),
-            article = ArticleList[0],
-            navigateToArticle = { }
-        )
     }
 }
