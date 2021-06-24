@@ -3,6 +3,7 @@ package com.web0z.coffeetimenews.ui.article
 import android.content.res.Configuration
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -27,11 +28,51 @@ import com.web0z.coffeetimenews.ui.theme.*
 import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.util.AppNameText
 
+@ExperimentalFoundationApi
 @Composable
 fun ArticleDetail(
     article: Article
 ) {
-    ArticleHead(article)
+    LazyColumn(
+        modifier = Modifier
+            .background(MaterialTheme.colors.primary)
+    ) {
+        stickyHeader {
+            TopBar()
+        }
+        item {
+            ArticleHead(article)
+        }
+        item {
+            BodyText(article)
+        }
+    }
+}
+
+@Composable
+private fun BodyText(article: Article) {
+    Box(
+        modifier = Modifier
+            .background(
+                MaterialTheme.colors.primary,
+                RoundedCornerShape(
+                    topStart = 22.dp,
+                    topEnd = 22.dp
+                )
+            )
+    ) {
+        Text(
+            text = article.articleDetail,
+            style = CoffeeTimeNewsTypography.body1,
+            color = MaterialTheme.colors.onPrimary,
+            modifier = Modifier
+                .padding(
+                    top = 29.dp,
+                    start = 25.dp,
+                    end = 25.dp
+                )
+        )
+    }
 }
 
 @Composable
@@ -40,6 +81,9 @@ private fun ArticleHead(article: Article) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.primary)
+            .padding(
+                top = 5.dp
+            )
     ) {
         Box(
             modifier = Modifier
@@ -65,7 +109,6 @@ private fun ArticleHead(article: Article) {
                     .height(400.dp),
                 contentScale = ContentScale.Crop,
             )
-            TopBar()
             Column(
                 modifier = Modifier
                     .padding(
@@ -119,13 +162,9 @@ private fun ArticleHead(article: Article) {
 fun TopBar() {
     Box(
         Modifier
-            .padding(
-                start = 14.dp,
-                top = 25.dp
-            )
-            .width(361.dp)
-            .height(46.dp)
-            .background(Color.Transparent)
+            .fillMaxWidth()
+            .height(71.dp)
+            .background(MaterialTheme.colors.primary.copy(alpha = 0.95f))
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_back_button),
@@ -133,30 +172,27 @@ fun TopBar() {
             modifier = Modifier
                 .clickable { }
                 .align(Alignment.CenterStart)
-                .padding(start = 4.dp)
+                .padding(start = 12.dp)
                 .width(32.08.dp)
                 .height(32.08.dp),
-            tint = darkTextColor
+            tint = MaterialTheme.colors.onPrimary
         )
         Box(
             modifier = Modifier
                 .align(Alignment.CenterEnd)
+                .padding(end = 10.dp)
         ) {
             AppNameText(
                 smalltextStyle = CoffeeTimeNewsTypography.h6,
                 bigtextStyle = CoffeeTimeNewsTypography.h5,
                 topPadding = 15.73f,
-                color = darkTextColor
+                color = MaterialTheme.colors.onPrimary
             )
         }
     }
 }
 
-@Composable
-fun ArticleContent() {
-
-}
-
+@ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -168,6 +204,7 @@ fun DarkThemePreviewHome() {
     }
 }
 
+@ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
