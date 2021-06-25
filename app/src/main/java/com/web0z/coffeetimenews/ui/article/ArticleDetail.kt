@@ -11,14 +11,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -68,8 +72,8 @@ private fun BodyText(article: Article) {
             modifier = Modifier
                 .padding(
                     top = 29.dp,
-                    start = 25.dp,
-                    end = 25.dp
+                    start = 12.dp,
+                    end = 12.dp
                 )
         )
     }
@@ -81,25 +85,12 @@ private fun ArticleHead(article: Article) {
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.primary)
-            .padding(
-                top = 5.dp
-            )
     ) {
         Box(
             modifier = Modifier
                 .width(411.dp)
                 .height(400.dp)
                 .verticalScroll(rememberScrollState())
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            Color(0x45000000),
-                            Color(0x00000000)
-                        ),
-                        0f,
-                        500f
-                    )
-                )
         ) {
             Image(
                 painter = painterResource(id = R.drawable.elon2),
@@ -111,15 +102,26 @@ private fun ArticleHead(article: Article) {
             )
             Column(
                 modifier = Modifier
-                    .padding(
-                        top = 251.dp,
-                        start = 25.dp
+                    .align(Alignment.BottomStart)
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black),
+                            startY = 0f,
+                            endY = 400 * 1f
+                        )
                     )
             ) {
                 Text(
                     text = "${article.section} | ${article.date}",
                     style = CoffeeTimeNewsTypography.subtitle2,
-                    color = darkTextColor.copy(alpha = 0.8f)
+                    color = darkTextColor.copy(alpha = 0.8f),
+                    modifier = Modifier
+                        .padding(
+                            start = 25.dp,
+                            top = 10.dp
+                        )
                 )
                 Text(
                     text = article.title,
@@ -129,9 +131,16 @@ private fun ArticleHead(article: Article) {
                         fontSize = 22.sp,
                     ),
                     color = darkTextColor,
+                    modifier = Modifier
+                        .padding(start = 25.dp)
                 )
                 Row(
-                    modifier = Modifier.padding(top = 33.dp)
+                    modifier = Modifier
+                        .padding(
+                            top = 33.dp,
+                            bottom = 10.dp,
+                            start = 25.dp
+                        )
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.elon2),

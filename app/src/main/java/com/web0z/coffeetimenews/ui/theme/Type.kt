@@ -61,8 +61,9 @@ val CoffeeTimeNewsTypography = Typography(
     body1 = TextStyle(
         fontFamily = Andada,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
-        letterSpacing = 3.5.sp
+        fontSize = 16.sp,
+        letterSpacing = 3.sp,
+        lineHeight = 18.sp
     ),
     body2 = TextStyle(
         fontFamily = Andada,
@@ -71,9 +72,9 @@ val CoffeeTimeNewsTypography = Typography(
     ),
     button = TextStyle(
         fontFamily = Andada,
-        fontWeight = FontWeight.SemiBold,
+        fontWeight = FontWeight.Normal,
         fontSize = 24.sp,
-        letterSpacing = 6.5.sp
+        letterSpacing = 3.sp
     ),
     caption = TextStyle(
         fontFamily = Andada,

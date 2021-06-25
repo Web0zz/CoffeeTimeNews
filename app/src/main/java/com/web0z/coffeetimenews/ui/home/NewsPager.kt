@@ -107,16 +107,6 @@ private fun ArticleContent(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color(0x45000000),
-                                Color(0x00000000)
-                            ),
-                            0f,
-                            500f
-                        )
-                    )
                     .alpha(0.8f)
 
             ) {}

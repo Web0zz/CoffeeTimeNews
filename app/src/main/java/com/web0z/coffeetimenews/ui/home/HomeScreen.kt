@@ -14,7 +14,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.util.ArticleList2
 import com.web0z.coffeetimenews.ui.util.CategoryList
-import com.web0z.coffeetimenews.ui.util.SectionList
 
 @ExperimentalPagerApi
 @Composable
