@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightRed
@@ -53,7 +54,7 @@ private fun Content(errorMessage: String) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Oops!",
+                text = stringResource(id = R.string.oops),
                 style = CoffeeTimeNewsTypography.h2,
                 color = lightRed
             )
@@ -73,7 +74,7 @@ private fun Content(errorMessage: String) {
                     .shadow(elevation = 4.dp),
             ) {
                 Text(
-                    text = "Try Again",
+                    text = stringResource(id = R.string.try_again),
                     style = CoffeeTimeNewsTypography.button,
                     color = MaterialTheme.colors.primaryVariant
                 )

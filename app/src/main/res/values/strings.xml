@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CoffeeTimeNews</string>
+    <string name="oops">Oops!</string>
+    <string name="try_again">Try Again</string>
+    <string name="coffee">Coffee</string>
+    <string name="timeNews">TimeNews</string>
 </resources>

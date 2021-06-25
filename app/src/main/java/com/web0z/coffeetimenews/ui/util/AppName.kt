@@ -10,9 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.web0z.coffeetimenews.R
 
 @Composable
 fun BoxScope.AppNameText(
@@ -22,7 +24,7 @@ fun BoxScope.AppNameText(
     color: Color = MaterialTheme.colors.onPrimary
 ) {
     Text(
-        text = "Coffee",
+        text = stringResource(id = R.string.coffee),
         style = smalltextStyle.merge(
             TextStyle(
                 shadow = Shadow(color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f), Offset(0f, 4f), 15f)
@@ -33,7 +35,7 @@ fun BoxScope.AppNameText(
             .align(Alignment.TopCenter)
     )
     Text(
-        text = "TimeNews",
+        text = stringResource(id = R.string.timeNews),
         textAlign = TextAlign.Center,
         style = bigtextStyle.merge(
             TextStyle(
