@@ -1,7 +1,6 @@
 package com.web0z.coffeetimenews.ui.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,9 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,31 +18,8 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.web0z.coffeetimenews.ui.theme.*
+import com.web0z.coffeetimenews.ui.util.Article
 import com.web0z.coffeetimenews.ui.util.ArticleList
-
-// TODO Data class will replace with real data model after
-data class Article(
-    val poster: Int,
-    val title: String,
-    val author: String,
-    var date: String = "June 22",
-    var section: String = "Science",
-    var articleDetail: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque quisque sed facilisis vitae, mauris pretium, odio bibendum. Semper risus arcu adipiscing varius. Porta purus diam diam sed. Quis sit sed adipiscing sed egestas dui bibendum risus. Praesent adipiscing non facilisis integer in. Varius fusce est dictum id dolor aliquam lorem. Nunc malesuada lorem facilisi semper elit tempus velit.\n" +
-            "\n" +
-            "Urna orci molestie vestibulum, orci, mauris duis aliquam, fringilla id. Arcu, morbi eleifend tortor feugiat. Auctor risus, facilisis id auctor ornare proin et vitae orci. Turpis diam gravida non quis." +"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque quisque sed facilisis vitae, mauris pretium, odio bibendum. Semper risus arcu adipiscing varius. Porta purus diam diam sed. Quis sit sed adipiscing sed egestas dui bibendum risus. Praesent adipiscing non facilisis integer in. Varius fusce est dictum id dolor aliquam lorem. Nunc malesuada lorem facilisi semper elit tempus velit.\n" +
-            "\n" +
-            "Urna orci molestie vestibulum, orci, mauris duis aliquam, fringilla id. Arcu, morbi eleifend tortor feugiat. Auctor risus, facilisis id auctor ornare proin et vitae orci. Turpis diam gravida non quis." +
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque quisque sed facilisis vitae, mauris pretium, odio bibendum. Semper risus arcu adipiscing varius. Porta purus diam diam sed. Quis sit sed adipiscing sed egestas dui bibendum risus. Praesent adipiscing non facilisis integer in. Varius fusce est dictum id dolor aliquam lorem. Nunc malesuada lorem facilisi semper elit tempus velit.\n" +
-            "\n" +
-            "Urna orci molestie vestibulum, orci, mauris duis aliquam, fringilla id. Arcu, morbi eleifend tortor feugiat. Auctor risus, facilisis id auctor ornare proin et vitae orci. Turpis diam gravida non quis." +
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque quisque sed facilisis vitae, mauris pretium, odio bibendum. Semper risus arcu adipiscing varius. Porta purus diam diam sed. Quis sit sed adipiscing sed egestas dui bibendum risus. Praesent adipiscing non facilisis integer in. Varius fusce est dictum id dolor aliquam lorem. Nunc malesuada lorem facilisi semper elit tempus velit.\n" +
-            "\n" +
-            "Urna orci molestie vestibulum, orci, mauris duis aliquam, fringilla id. Arcu, morbi eleifend tortor feugiat. Auctor risus, facilisis id auctor ornare proin et vitae orci. Turpis diam gravida non quis." +
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque quisque sed facilisis vitae, mauris pretium, odio bibendum. Semper risus arcu adipiscing varius. Porta purus diam diam sed. Quis sit sed adipiscing sed egestas dui bibendum risus. Praesent adipiscing non facilisis integer in. Varius fusce est dictum id dolor aliquam lorem. Nunc malesuada lorem facilisi semper elit tempus velit.\n" +
-            "\n" +
-            "Urna orci molestie vestibulum, orci, mauris duis aliquam, fringilla id. Arcu, morbi eleifend tortor feugiat. Auctor risus, facilisis id auctor ornare proin et vitae orci. Turpis diam gravida non quis."
-
-)
 
 @ExperimentalPagerApi
 @Composable
@@ -90,13 +63,13 @@ private fun ArticleContent(
     article: Article,
     modifier: Modifier
 ) {
-    // TODO Hardcoded values will change later on
     Box(
         modifier = modifier
     ) {
         Card (
             shape = RoundedCornerShape(5.dp)
         ) {
+            // TODO Will add verticalGradiant
             Image(
                 painter = painterResource(id = article.poster),
                 contentDescription = null,
@@ -104,12 +77,6 @@ private fun ArticleContent(
                     .fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .alpha(0.8f)
-
-            ) {}
             Column(
                 modifier = Modifier
                     .padding(

@@ -2,46 +2,32 @@ package com.web0z.coffeetimenews.ui.home
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
+import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
+import com.web0z.coffeetimenews.ui.util.AppNameText
 import com.web0z.coffeetimenews.ui.util.ArticleList2
 import com.web0z.coffeetimenews.ui.util.CategoryList
 
 @ExperimentalPagerApi
 @Composable
 fun HomeScreen(
-    // repository,
-    // navigateToArticle: (String) -> Unit,
-    // drawer,
+    navController: NavController,
     // scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    HomeScreenContent(
-        // scaffoldState = scaffoldState
-    )
-}
-
-@ExperimentalPagerApi
-@Composable
-private fun HomeScreenContent(
-    // Article lists
-    // Top news for pager
-    // onRefreshPosts: () -> Unit,
-    // onErrorDismiss: () -> Unit,
-    // navigateToArticle: (String) -> Unit,
-    // drawer,
-    // scaffoldState: ScaffoldState
-) {
-
-    // Error handler will setup
-
     Scaffold(
         // scaffoldState = scaffoldState,
         modifier = Modifier
@@ -50,15 +36,49 @@ private fun HomeScreenContent(
             TopBar()
         },
         content = {
-            BodyContent()
+            BodyContent(navController)
         },
         backgroundColor = MaterialTheme.colors.primary,
     )
 }
 
+@Composable
+private fun TopBar() {
+    Box(
+        Modifier
+            .padding(
+                start = 14.dp,
+                top = 25.dp
+            )
+            .width(361.dp)
+            .height(46.dp)
+            .background(MaterialTheme.colors.primary)
+    ) {
+        Box {
+            AppNameText(
+                smalltextStyle = CoffeeTimeNewsTypography.h6,
+                bigtextStyle = CoffeeTimeNewsTypography.h5,
+                topPadding = 15.73f
+            )
+        }
+        IconButton(
+            onClick = {
+                /* TODO create main util fail and make light/dark mode changer */
+            },
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+        ) {
+            Icon(
+                painter = painterResource(id = if (isSystemInDarkTheme()) R.drawable.ic_dark_icon else R.drawable.ic_light_icon),
+                contentDescription = null
+            )
+        }
+    }
+}
+
 @ExperimentalPagerApi
 @Composable
-private fun BodyContent() {
+private fun BodyContent(navController: NavController) {
     Box(
         modifier = Modifier
             .padding(top = 25.dp)
@@ -67,7 +87,7 @@ private fun BodyContent() {
         contentAlignment = Alignment.TopCenter,
     ) {
         NewsPager(
-            // TODO data list will taken from viewmodel later
+            // TODO data list will taken from ViewModel later
             items = ArticleList2,
             modifier = Modifier
                 .width(375.dp)
@@ -83,7 +103,7 @@ private fun BodyContent() {
                     top = 248.dp,
                 ),
             sectionList = CategoryList,
-            navigateToArticle = { },
+            navController = navController,
             selectedCategory = CategoryList.first(),
             onCategorySelected = {
                 //TODO will set viewState
@@ -98,7 +118,9 @@ private fun BodyContent() {
 @Composable
 fun DarkThemePreviewHome() {
     CoffeeTimeNewsTheme {
-        HomeScreen()
+        HomeScreen(
+            navController = NavController(LocalContext.current)
+        )
     }
 }
 
@@ -107,6 +129,8 @@ fun DarkThemePreviewHome() {
 @Composable
 fun LightThemePreviewHome() {
     CoffeeTimeNewsTheme {
-        HomeScreen()
+        HomeScreen(
+            navController = NavController(LocalContext.current)
+        )
     }
 }

@@ -11,38 +11,37 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.pager.ExperimentalPagerApi
+import androidx.navigation.NavController
 import com.web0z.coffeetimenews.R
-import com.web0z.coffeetimenews.ui.home.Article
 import com.web0z.coffeetimenews.ui.theme.*
-import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.util.AppNameText
+import com.web0z.coffeetimenews.ui.util.Article
+import com.web0z.coffeetimenews.ui.util.ArticleList
 
 @ExperimentalFoundationApi
 @Composable
 fun ArticleDetail(
-    article: Article
+    navController: NavController,
+    article: Article // TODO will replace
+    //viewModel: ArticleDetailViewModel
 ) {
     LazyColumn(
         modifier = Modifier
             .background(MaterialTheme.colors.primary)
     ) {
         stickyHeader {
-            TopBar()
+            TopBar(navController)
         }
         item {
             ArticleHead(article)
@@ -168,7 +167,7 @@ private fun ArticleHead(article: Article) {
 }
 
 @Composable
-fun TopBar() {
+private fun TopBar(navController: NavController) {
     Box(
         Modifier
             .fillMaxWidth()
@@ -179,7 +178,9 @@ fun TopBar() {
             painter = painterResource(id = R.drawable.ic_back_button),
             contentDescription = null,
             modifier = Modifier
-                .clickable { }
+                .clickable {
+                    navController.navigateUp()
+                }
                 .align(Alignment.CenterStart)
                 .padding(start = 12.dp)
                 .width(32.08.dp)
@@ -202,24 +203,24 @@ fun TopBar() {
 }
 
 @ExperimentalFoundationApi
-@ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DarkThemePreviewHome() {
     CoffeeTimeNewsTheme {
         ArticleDetail(
+            navController = NavController(LocalContext.current),
             ArticleList.first()
         )
     }
 }
 
 @ExperimentalFoundationApi
-@ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun LightThemePreviewHome() {
     CoffeeTimeNewsTheme {
         ArticleDetail(
+            navController = NavController(LocalContext.current),
             ArticleList.first()
         )
     }

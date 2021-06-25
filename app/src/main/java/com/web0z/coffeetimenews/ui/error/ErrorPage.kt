@@ -10,27 +10,33 @@ import com.web0z.coffeetimenews.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightRed
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 
 @Composable
 fun ErrorPage(
     // TODO will come data class
-    errorMessage: String
+    errorMessage: String,
+    navController: NavController
 ) {
     Scaffold() {
-        Content(errorMessage)
+        Content(errorMessage, navController)
     }
 }
 
 @Composable
-private fun Content(errorMessage: String) {
+private fun Content(
+    errorMessage: String,
+    navController: NavController
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +71,9 @@ private fun Content(errorMessage: String) {
                     .padding(top = 5.dp)
             )
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.navigateUp()
+                },
                 colors = ButtonDefaults.textButtonColors(
                     backgroundColor = MaterialTheme.colors.onPrimary
                 ),
@@ -83,13 +91,13 @@ private fun Content(errorMessage: String) {
     }
 }
 
-
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun DarkThemePreviewHome() {
     CoffeeTimeNewsTheme {
         ErrorPage(
-            errorMessage = "Something's missing"
+            errorMessage = "Something's missing",
+            navController = NavController(LocalContext.current)
         )
     }
 }
@@ -99,7 +107,8 @@ fun DarkThemePreviewHome() {
 fun LightThemePreviewHome() {
     CoffeeTimeNewsTheme {
         ErrorPage(
-            errorMessage = "Something's missing"
+            errorMessage = "Something's missing",
+            navController = NavController(LocalContext.current)
         )
     }
 }

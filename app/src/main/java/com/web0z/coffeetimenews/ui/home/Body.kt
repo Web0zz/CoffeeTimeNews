@@ -12,9 +12,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.web0z.coffeetimenews.ui.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
+import com.web0z.coffeetimenews.ui.util.Article
 import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.util.Category
 
@@ -25,16 +28,16 @@ fun NewsListBody(
     sectionList: List<Category>,
     selectedCategory: Category,
     onCategorySelected: (Category) -> Unit,
-    navigateToArticle: (String) -> Unit
+    navController: NavController
 ) {
     NewsCategoryTabs(sectionList, selectedCategory, modifier, onCategorySelected)
 
     // TODO will change with lazyColumn
-    NewsList(navigateToArticle)
+    NewsList(navController)
 }
 
 @Composable
-private fun NewsList(navigateToArticle: (String) -> Unit) {
+private fun NewsList(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -50,7 +53,7 @@ private fun NewsList(navigateToArticle: (String) -> Unit) {
                     .shadow(4.dp)
                     .align(Alignment.CenterHorizontally),
                 article = article,
-                navigateToArticle = navigateToArticle
+                navController = navController
             )
         }
     }
@@ -106,12 +109,15 @@ private fun NewsCategoryTabs(
 fun ArticleListContent(
     modifier: Modifier,
     article: Article,
-    navigateToArticle: (String) -> Unit
+    navController: NavController
 ) {
     Box(
         // TODO click fun will replace with model data id
         modifier = modifier
-            .clickable(onClick = {navigateToArticle(article.title)})
+            .clickable(onClick = {
+                // TODO replace with model id
+                navController.navigate(Screen.Detail.route(article.title))
+            } )
     ) {
         Card(
             shape = RoundedCornerShape(4.dp),
