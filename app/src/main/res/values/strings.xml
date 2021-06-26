@@ -5,4 +5,7 @@
     <string name="coffee">Coffee</string>
     <string name="timeNews">TimeNews</string>
     <string name="default_error_message">Something weird happened!</string>
+    <string name="title_core">Core Module</string>
+    <string name="title_repository">Repository Module</string>
+    <string name="title_data">Data Module</string>
 </resources>

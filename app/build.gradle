@@ -36,6 +36,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
     }
+    dynamicFeatures = [':Repository', ':core', ':data']
 }
 
 dependencies {
