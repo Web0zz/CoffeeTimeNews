@@ -7,6 +7,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CoffeeTimeNews"
 include ':app'
-include ':Repository'
+include ':repository'
 include ':core'
 include ':data'
