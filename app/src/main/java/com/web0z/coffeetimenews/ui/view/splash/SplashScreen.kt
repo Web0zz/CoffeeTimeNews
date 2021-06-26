@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.splash
+package com.web0z.coffeetimenews.ui.view.splash
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -8,16 +8,20 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.util.AppNameText
 
 @Composable
-fun SplashScreen() {
+fun SplashScreen(
+    navController: NavController
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +54,9 @@ fun SplashScreen() {
 @Composable
 fun DarkThemePreviewHome() {
     CoffeeTimeNewsTheme {
-        SplashScreen()
+        SplashScreen(
+            navController = NavController(LocalContext.current)
+        )
     }
 }
 
@@ -58,6 +64,8 @@ fun DarkThemePreviewHome() {
 @Composable
 fun LightThemePreviewHome() {
     CoffeeTimeNewsTheme {
-        SplashScreen()
+        SplashScreen(
+            navController = NavController(LocalContext.current)
+        )
     }
 }

@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.error
+package com.web0z.coffeetimenews.ui.view.error
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image

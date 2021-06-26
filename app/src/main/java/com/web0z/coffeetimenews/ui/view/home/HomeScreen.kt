@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.home
+package com.web0z.coffeetimenews.ui.view.home
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.home
+package com.web0z.coffeetimenews.ui.view.home
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -14,7 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.web0z.coffeetimenews.ui.Screen
+import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
 import com.web0z.coffeetimenews.ui.util.Article

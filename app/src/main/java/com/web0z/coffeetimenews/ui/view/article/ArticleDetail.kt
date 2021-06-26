@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.article
+package com.web0z.coffeetimenews.ui.view.article
 
 import android.content.res.Configuration
 import androidx.compose.foundation.*

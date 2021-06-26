@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">CoffeeTimeNews</string>
-    <string name="oops">Oops!</string>
+    <string name="oops">Ooops!</string>
     <string name="try_again">Try Again</string>
     <string name="coffee">Coffee</string>
     <string name="timeNews">TimeNews</string>
+    <string name="default_error_message">Something weird happened!</string>
 </resources>

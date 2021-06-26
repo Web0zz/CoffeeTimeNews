@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.home
+package com.web0z.coffeetimenews.ui.view.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

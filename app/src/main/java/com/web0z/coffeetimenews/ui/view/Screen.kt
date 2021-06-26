@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui
+package com.web0z.coffeetimenews.ui.view
 
 sealed class Screen(
     val route: String, val name: String
