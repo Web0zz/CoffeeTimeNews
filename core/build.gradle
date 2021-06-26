@@ -2,6 +2,26 @@ plugins {
     id 'kotlin'
 }
 
+ext {
+    kotlinVersion = "1.5.10"
+    coroutinesVersion = "1.5.0"
+    javaxInjectVersion = "1"
+    moshiVersion = "1.11.0"
+}
+
 dependencies {
     implementation project(":app")
+
+    // Kotlin Stdlib
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    // Coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+
+    // JavaX Inject
+    api "javax.inject:javax.inject:$javaxInjectVersion"
+
+    // Moshi
+    api "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    api "com.squareup.moshi:moshi-adapters:$moshiVersion"
 }
