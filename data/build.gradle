@@ -24,6 +24,9 @@ android {
 ext {
     retrofitVersion = "2.9.0"
     javaxInjectVersion = "1"
+    roomVersion = "2.3.0"
+    legacySupportVersion = "1.0.0"
+    jUnitVersion = "4.13.2"
 }
 
 dependencies {
@@ -37,4 +40,13 @@ dependencies {
 
     // Moshi Retrofit Converter
     api "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    // Room
+    api "androidx.room:room-runtime:$roomVersion"
+    api "androidx.legacy:legacy-support-v4:$legacySupportVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    api "androidx.room:room-ktx:$roomVersion"
+
+    // Testing
+    testImplementation "junit:junit:$jUnitVersion"
 }
