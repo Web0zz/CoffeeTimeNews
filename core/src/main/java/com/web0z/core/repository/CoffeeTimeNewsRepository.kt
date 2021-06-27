@@ -19,5 +19,5 @@ interface CoffeeTimeNewsRepository {
      *
      *  @param article_category a article category
      */
-    fun getArticleByCategory(article_category: String): Flow<ResponseResult<List<Article>>>
+    suspend fun getArticleByCategory(article_category: String): Flow<ResponseResult<List<Article>>>
 }

@@ -21,6 +21,19 @@ android {
     }
 }
 
+ext {
+    javaxInjectVersion = "1"
+    jUnitVersion = "4.13.2"
+}
+
 dependencies {
     implementation project(":app")
+    implementation project(path: ':core')
+    implementation project(path: ':data')
+
+    // JavaX Inject
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+
+    // Testing
+    testImplementation "junit:junit:$jUnitVersion"
 }
