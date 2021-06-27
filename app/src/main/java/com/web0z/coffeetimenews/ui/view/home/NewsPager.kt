@@ -18,16 +18,16 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.web0z.coffeetimenews.ui.theme.*
-import com.web0z.coffeetimenews.ui.util.Article
+import com.web0z.coffeetimenews.ui.util.ExArticle
 import com.web0z.coffeetimenews.ui.util.ArticleList
 
 @ExperimentalPagerApi
 @Composable
 fun NewsPager(
-    items: List<Article>,
+    items: List<ExArticle>,
     modifier: Modifier = Modifier,
     // TODO State remember will be added here,,,
-    onItemSelect: (Article) -> Unit = {},
+    onItemSelect: (ExArticle) -> Unit = {},
 ) {
     Box(
         modifier = modifier
@@ -60,7 +60,7 @@ fun NewsPager(
 
 @Composable
 private fun ArticleContent(
-    article: Article,
+    article: ExArticle,
     modifier: Modifier
 ) {
     Box(

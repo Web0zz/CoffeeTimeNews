@@ -21,6 +21,20 @@ android {
     }
 }
 
+ext {
+    retrofitVersion = "2.9.0"
+    javaxInjectVersion = "1"
+}
+
 dependencies {
-    implementation project(":app")
+    implementation project(path: ':core')
+
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // JavaX Inject
+    implementation "javax.inject:javax.inject:$javaxInjectVersion"
+
+    // Moshi Retrofit Converter
+    api "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }

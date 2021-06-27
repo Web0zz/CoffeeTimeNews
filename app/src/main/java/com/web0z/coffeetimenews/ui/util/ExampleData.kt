@@ -3,61 +3,61 @@ package com.web0z.coffeetimenews.ui.util
 import com.web0z.coffeetimenews.R
 
 val ArticleList = listOf(
-    Article(
+    ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 1",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 2",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 3",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 4",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 5",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elonmusk,
         "Is Elon Musk An \"Alien\"? 6",
         "Micheal Rust"
     )
 )
 val ArticleList2 = listOf(
-    Article(
+    ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 1",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 2",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 3",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 4",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 5",
         "Micheal Rust"
-    ),Article(
+    ),ExArticle(
         R.drawable.elon2,
         "Is Elon Musk An \"Alien\"? 6",
         "Micheal Rust"
     )
 )
 
-data class Article(
+data class ExArticle(
     val poster: Int,
     val title: String,
     val author: String,

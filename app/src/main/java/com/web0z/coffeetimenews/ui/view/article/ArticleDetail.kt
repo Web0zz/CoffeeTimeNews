@@ -26,14 +26,14 @@ import androidx.navigation.NavController
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.*
 import com.web0z.coffeetimenews.ui.util.AppNameText
-import com.web0z.coffeetimenews.ui.util.Article
+import com.web0z.coffeetimenews.ui.util.ExArticle
 import com.web0z.coffeetimenews.ui.util.ArticleList
 
 @ExperimentalFoundationApi
 @Composable
 fun ArticleDetail(
     navController: NavController,
-    article: Article // TODO will replace
+    article: ExArticle // TODO will replace
     //viewModel: ArticleDetailViewModel
 ) {
     LazyColumn(
@@ -53,7 +53,7 @@ fun ArticleDetail(
 }
 
 @Composable
-private fun BodyText(article: Article) {
+private fun BodyText(article: ExArticle) {
     Box(
         modifier = Modifier
             .background(
@@ -79,7 +79,7 @@ private fun BodyText(article: Article) {
 }
 
 @Composable
-private fun ArticleHead(article: Article) {
+private fun ArticleHead(article: ExArticle) {
     Box(
         modifier = Modifier
             .fillMaxSize()

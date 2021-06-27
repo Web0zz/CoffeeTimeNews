@@ -17,7 +17,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
-import com.web0z.coffeetimenews.ui.util.Article
+import com.web0z.coffeetimenews.ui.util.ExArticle
 import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.util.Category
 
@@ -108,7 +108,7 @@ private fun NewsCategoryTabs(
 @Composable
 fun ArticleListContent(
     modifier: Modifier,
-    article: Article,
+    article: ExArticle,
     navController: NavController
 ) {
     Box(
