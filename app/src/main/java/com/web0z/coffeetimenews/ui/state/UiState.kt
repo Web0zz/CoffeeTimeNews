@@ -1,6 +1,6 @@
 package com.web0z.coffeetimenews.ui.state
 
-import java.lang.Exception
+import com.web0z.core.repository.ResponseResult
 
 /**
  * Immutable data class that allows for loading, data, and exception to be managed independently.
@@ -14,14 +14,14 @@ import java.lang.Exception
  */
 data class UiState<T>(
     val loading: Boolean = false,
-    val exception: Exception? = null,
+    val error: String? = null,
     val data: T? = null
 ) {
     /**
      * True if this contains an error
      */
     val hasError: Boolean
-        get() = exception != null
+        get() = error != null
 
     /**
      * True if this represents a first load
