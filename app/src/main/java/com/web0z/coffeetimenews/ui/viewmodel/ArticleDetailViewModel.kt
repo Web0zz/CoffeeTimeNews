@@ -19,7 +19,7 @@ class ArticleDetailViewModel constructor(
 
     init {
         viewModelScope.launch {
-            val article = coffeeTimeNewsRepository.getArticleById(articleId)
+            coffeeTimeNewsRepository.getArticleById(articleId)
                 .onStart {
                     _state.value = UiState(loading = true, error = null, data = null)
                 }
