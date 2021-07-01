@@ -11,6 +11,5 @@ fun CoffeeTimeNewsApp(
     /*appContainer: AppContainer*/
 ) {
     CoffeeTimeNewsTheme {
-        SplashScreen()
     }
 }

@@ -1,0 +1,15 @@
+ext {
+    compose_version = '1.0.0-beta09'
+    kotlin_version = '1.5.10'
+    coroutines_version = '1.4.2'
+    accompanist_version = '0.12.0'
+    hilt_version = '2.37'
+    jetpackHiltVersion = '1.0.0'
+    coroutinesVersion = "1.5.0"
+    javaxInjectVersion = "1"
+    moshiVersion = "1.11.0"
+    retrofitVersion = "2.9.0"
+    roomVersion = "2.3.0"
+    legacySupportVersion = "1.0.0"
+    jUnitVersion = "4.13.2"
+}

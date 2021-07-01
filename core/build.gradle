@@ -1,17 +1,8 @@
-plugins {
-    id 'kotlin'
-}
-
-ext {
-    coroutinesVersion = "1.5.0"
-    javaxInjectVersion = "1"
-    moshiVersion = "1.11.0"
-    kotlinVersion = '1.5.10'
-}
+apply plugin: 'kotlin'
 
 dependencies {
     // Kotlin Stdlib
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Coroutines
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"

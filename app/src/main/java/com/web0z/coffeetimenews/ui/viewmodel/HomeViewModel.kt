@@ -2,16 +2,20 @@ package com.web0z.coffeetimenews.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.web0z.coffeetimenews.di.Repository
 import com.web0z.coffeetimenews.ui.state.UiState
 import com.web0z.core.model.Article
 import com.web0z.core.model.Category
 import com.web0z.core.repository.CoffeeTimeNewsRepository
 import com.web0z.core.repository.ResponseResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel constructor(
-    private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository
 ): ViewModel() {
     private val _state = MutableStateFlow(UiState<HashMap<Category, List<Article>>>())
 

@@ -1,15 +1,14 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion ProjectConfig.compileSdkVersion
+    buildToolsVersion ProjectConfig.buildToolsVersion
 
     defaultConfig {
-        minSdk 21
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion ProjectConfig.minSdkVersion
+        targetSdkVersion ProjectConfig.targetSdkVersion
     }
 
     compileOptions {
@@ -21,16 +20,14 @@ android {
     }
 }
 
-ext {
-    retrofitVersion = "2.9.0"
-    javaxInjectVersion = "1"
-    roomVersion = "2.3.0"
-    legacySupportVersion = "1.0.0"
-    jUnitVersion = "4.13.2"
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
-    implementation project(path: ':core')
+    implementation project(":core")
 
     // Retrofit
     api "com.squareup.retrofit2:retrofit:$retrofitVersion"

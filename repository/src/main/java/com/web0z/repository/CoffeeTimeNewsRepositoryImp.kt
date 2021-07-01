@@ -9,13 +9,14 @@ import com.web0z.data.remote.api.CoffeeTimeNewsService
 import com.web0z.data.remote.model.State
 import com.web0z.data.remote.util.getResponse
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
-class CoffeeTimeNewsRepositoryImp(
-    private val articleDao: ArticlesDao,
-    private val articleService: CoffeeTimeNewsService
+class CoffeeTimeNewsRepositoryImp @Inject constructor(
+    private val articleService: CoffeeTimeNewsService,
+    private val articlesDao: ArticlesDao
 ) : CoffeeTimeNewsRepository {
 
-    override fun getArticleById(articleId: String): Flow<Article> = articleDao.getArticleById(articleId)
+    override fun getArticleById(articleId: String): Flow<Article> = articlesDao.getArticleById(articleId)
         .map {
             Article(it.id,
                 it.title,
@@ -44,7 +45,7 @@ class CoffeeTimeNewsRepositoryImp(
     }.catch { emit(ResponseResult.error("Can't request")) }
 
     private suspend fun insertArticle(articles: List<Article>) {
-        articleDao.addArticle(
+        articlesDao.addArticle(
             articles.map {
                 ArticleEntity(it.id,
                     it.title,

@@ -1,14 +1,14 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion ProjectConfig.compileSdkVersion
+    buildToolsVersion ProjectConfig.buildToolsVersion
 
     defaultConfig {
-        minSdk 21
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion ProjectConfig.minSdkVersion
+        targetSdkVersion ProjectConfig.targetSdkVersion
     }
 
     compileOptions {
@@ -21,15 +21,16 @@ android {
     }
 }
 
-ext {
-    javaxInjectVersion = "1"
-    jUnitVersion = "4.13.2"
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
-    implementation project(":app")
-    implementation project(path: ':core')
-    implementation project(path: ':data')
+    implementation project(":core")
+
+    api project(":data")
 
     // JavaX Inject
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
