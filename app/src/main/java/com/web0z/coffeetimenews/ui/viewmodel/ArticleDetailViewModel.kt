@@ -1,6 +1,5 @@
 package com.web0z.coffeetimenews.ui.viewmodel
 
-/*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -67,4 +66,4 @@ class ArticleDetailViewModel @AssistedInject constructor(
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
-interface AssistedInjectModule*/
+interface AssistedInjectModule
