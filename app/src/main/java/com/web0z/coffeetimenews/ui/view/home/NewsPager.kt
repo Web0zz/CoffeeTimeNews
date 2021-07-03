@@ -10,24 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.web0z.coffeetimenews.ui.theme.*
-import com.web0z.coffeetimenews.ui.util.ExArticle
-import com.web0z.coffeetimenews.ui.util.ArticleList
+import com.web0z.core.model.Article
 
 @ExperimentalPagerApi
 @Composable
 fun NewsPager(
-    items: List<ExArticle>,
+    items: List<Article>,
     modifier: Modifier = Modifier,
-    // TODO State remember will be added here,,,
-    onItemSelect: (ExArticle) -> Unit = {},
+    onItemSelect: (Article) -> Unit = {},
 ) {
     Box(
         modifier = modifier
@@ -60,7 +57,7 @@ fun NewsPager(
 
 @Composable
 private fun ArticleContent(
-    article: ExArticle,
+    article: Article,
     modifier: Modifier
 ) {
     Box(
@@ -71,7 +68,8 @@ private fun ArticleContent(
         ) {
             // TODO Will add verticalGradiant
             Image(
-                painter = painterResource(id = article.poster),
+                //TODO coil image loader will be configured
+                painter = rememberCoilPainter(article.article_image),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize(),
@@ -90,7 +88,7 @@ private fun ArticleContent(
                     color = darkTextColor
                 )
                 Text(
-                    text = article.author,
+                    text = article.writer,
                     style = CoffeeTimeNewsTypography.caption,
                     color = darkTextColor
                 )
@@ -99,6 +97,7 @@ private fun ArticleContent(
     }
 }
 
+/*
 @ExperimentalPagerApi
 @Preview(showBackground = true)
 @Composable
@@ -112,4 +111,4 @@ private fun DarkThemePreview() {
             onItemSelect = {}
         )
     }
-}
+}*/

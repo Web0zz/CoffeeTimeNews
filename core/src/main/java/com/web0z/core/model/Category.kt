@@ -8,5 +8,5 @@ enum class Category(val category: String) {
     ART("art"),
     HEALTH("health"),
     LIFESTYLE("lifestyle"),
-    SPORT("sport")
+    SPORT("sport");
 }

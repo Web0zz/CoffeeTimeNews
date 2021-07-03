@@ -1,33 +1,36 @@
 package com.web0z.coffeetimenews.ui.view.home
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.util.AppNameText
-import com.web0z.coffeetimenews.ui.util.ArticleList2
-import com.web0z.coffeetimenews.ui.util.CategoryList
+import com.web0z.coffeetimenews.ui.view.Screen
+import com.web0z.coffeetimenews.ui.viewmodel.HomeViewModel
+import com.web0z.core.model.Article
+import com.web0z.core.model.Category
 
 @ExperimentalPagerApi
 @Composable
 fun HomeScreen(
     navController: NavController,
-    // scaffoldState: ScaffoldState = rememberScaffoldState()
+    viewModel: HomeViewModel
 ) {
+    val lifecycleScope = LocalLifecycleOwner.current.lifecycleScope
+
     Scaffold(
         // scaffoldState = scaffoldState,
         modifier = Modifier
@@ -36,7 +39,10 @@ fun HomeScreen(
             TopBar()
         },
         content = {
-            BodyContent(navController)
+            BodyContent(
+                navController,
+                viewModel
+            )
         },
         backgroundColor = MaterialTheme.colors.primary,
     )
@@ -78,7 +84,20 @@ private fun TopBar() {
 
 @ExperimentalPagerApi
 @Composable
-private fun BodyContent(navController: NavController) {
+private fun BodyContent(
+    navController: NavController,
+    viewModel: HomeViewModel
+) {
+    val articlesState = viewModel.state.collectAsState(initial = null).value
+
+    val onArticleClicked: (Article) -> Unit = {
+        println("Article Clicked")
+        navController.navigate(Screen.Detail.route(it.id))
+    }
+
+    // TODO will collect from viewmodel
+    val selectedCategory = Category.POPULAR
+
     Box(
         modifier = Modifier
             .padding(top = 25.dp)
@@ -87,32 +106,36 @@ private fun BodyContent(navController: NavController) {
         contentAlignment = Alignment.TopCenter,
     ) {
         NewsPager(
-            // TODO data list will taken from ViewModel later
-            items = ArticleList2,
+            // TODO will ensure not null
+            items = articlesState?.data?.get(selectedCategory)!!,
             modifier = Modifier
                 .width(375.dp)
                 .height(220.dp)
                 .shadow(
                     elevation = 4.dp
                 ),
-            onItemSelect = { }
+            onItemSelect = {
+                onArticleClicked(it)
+            }
         )
         NewsListBody(
             modifier = Modifier
                 .padding(
                     top = 248.dp,
                 ),
-            sectionList = CategoryList,
-            navController = navController,
-            selectedCategory = CategoryList.first(),
+            // TODO will ensure not null
+            sectionArticles = articlesState.data[selectedCategory]!!,
+            selectedCategory = selectedCategory,
             onCategorySelected = {
-                //TODO will set viewState
-            }
+                //TODO will set selectedCategory via viewmodel
+            },
+            navController = navController,
         )
     }
 }
 
 
+/*
 @ExperimentalPagerApi
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -134,3 +157,4 @@ fun LightThemePreviewHome() {
         )
     }
 }
+*/

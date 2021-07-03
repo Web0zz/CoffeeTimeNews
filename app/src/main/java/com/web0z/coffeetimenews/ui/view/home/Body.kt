@@ -10,34 +10,43 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
-import com.web0z.coffeetimenews.ui.util.ExArticle
-import com.web0z.coffeetimenews.ui.util.ArticleList
-import com.web0z.coffeetimenews.ui.util.Category
+import com.web0z.core.model.Category
+import com.web0z.core.model.Article
 
 @ExperimentalPagerApi
 @Composable
 fun NewsListBody(
     modifier: Modifier,
-    sectionList: List<Category>,
+    sectionArticles: List<Article>,
     selectedCategory: Category,
     onCategorySelected: (Category) -> Unit,
     navController: NavController
 ) {
-    NewsCategoryTabs(sectionList, selectedCategory, modifier, onCategorySelected)
+    NewsCategoryTabs(
+        selectedCategory,
+        modifier,
+        onCategorySelected
+    )
 
     // TODO will change with lazyColumn
-    NewsList(navController)
+    NewsList(
+        navController,
+        sectionArticles
+    )
 }
 
 @Composable
-private fun NewsList(navController: NavController) {
+private fun NewsList(
+    navController: NavController,
+    articles: List<Article>
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +54,7 @@ private fun NewsList(navController: NavController) {
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        ArticleList.forEach { article ->
+        articles.forEach { article ->
             ArticleListContent(
                 modifier = Modifier
                     .width(375.dp)
@@ -61,12 +70,11 @@ private fun NewsList(navController: NavController) {
 
 @Composable
 private fun NewsCategoryTabs(
-    sectionList: List<Category>,
     selectedCategory: Category,
     modifier: Modifier,
     onCategorySelected: (Category) -> Unit
 ) {
-    val selectedIndex = sectionList.indexOfFirst { it == selectedCategory }
+    val selectedIndex = selectedCategory.ordinal
 
     val categoryTabIndicator = @Composable { tabPositions: List<TabPosition> ->
         Spacer(
@@ -86,7 +94,7 @@ private fun NewsCategoryTabs(
         edgePadding = 15.dp,
     ) {
         // TODO function will taken from viewmodel later
-        sectionList.forEachIndexed { index, category ->
+        Category.values().forEachIndexed { index, category ->
             Tab(
                 selected = index == selectedIndex,
                 onClick = { onCategorySelected(category) }
@@ -108,16 +116,17 @@ private fun NewsCategoryTabs(
 @Composable
 fun ArticleListContent(
     modifier: Modifier,
-    article: ExArticle,
+    article: Article,
     navController: NavController
 ) {
     Box(
         // TODO click fun will replace with model data id
         modifier = modifier
-            .clickable(onClick = {
-                // TODO replace with model id
-                navController.navigate(Screen.Detail.route(article.title))
-            } )
+            .clickable(
+                onClick = {
+                    navController.navigate(Screen.Detail.route(article.id))
+                }
+            )
     ) {
         Card(
             shape = RoundedCornerShape(4.dp),
@@ -128,7 +137,7 @@ fun ArticleListContent(
         ) {
             Row {
                 Image(
-                    painter = painterResource(id = article.poster),
+                    painter = rememberCoilPainter(article.article_image),
                     contentDescription = null,
                     modifier = Modifier
                         .width(140.dp)
@@ -140,7 +149,7 @@ fun ArticleListContent(
                         .padding(start = 12.dp)
                 ) {
                     Text(
-                        text = article.section,
+                        text = article.article_category,
                         style = CoffeeTimeNewsTypography.caption,
                         color = MaterialTheme.colors.onPrimary.copy(alpha = 0.6f),
                         modifier = Modifier.padding(top = 12.dp)
@@ -152,7 +161,7 @@ fun ArticleListContent(
                         modifier = Modifier.height(42.dp)
                     )
                     Text(
-                        text = "${article.author}  |  ${article.date}",
+                        text = "${article.writer}  |  ${article.publish_time}",
                         style = CoffeeTimeNewsTypography.overline,
                         color = MaterialTheme.colors.onPrimary.copy(alpha = 0.75f),
                         modifier = Modifier.padding(top = 3.dp)
