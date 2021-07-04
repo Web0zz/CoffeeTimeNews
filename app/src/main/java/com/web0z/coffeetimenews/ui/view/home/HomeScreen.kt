@@ -152,28 +152,3 @@ private fun BodyContent(
         }
     }
 }
-
-
-/*
-@ExperimentalPagerApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DarkThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        HomeScreen(
-            navController = NavController(LocalContext.current)
-        )
-    }
-}
-
-@ExperimentalPagerApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun LightThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        HomeScreen(
-            navController = NavController(LocalContext.current)
-        )
-    }
-}
-*/

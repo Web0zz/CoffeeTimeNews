@@ -96,19 +96,3 @@ private fun ArticleContent(
         }
     }
 }
-
-/*
-@ExperimentalPagerApi
-@Preview(showBackground = true)
-@Composable
-private fun DarkThemePreview() {
-    CoffeeTimeNewsTheme {
-        NewsPager(
-            items = ArticleList,
-            modifier = Modifier
-                .width(375.dp)
-                .height(220.dp),
-            onItemSelect = {}
-        )
-    }
-}*/

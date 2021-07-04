@@ -223,28 +223,3 @@ private fun TopBar(navController: NavController) {
         }
     }
 }
-
-/*
-@ExperimentalFoundationApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DarkThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        ArticleDetail(
-            navController = NavController(LocalContext.current),
-            ArticleList.first()
-        )
-    }
-}
-
-@ExperimentalFoundationApi
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun LightThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        ArticleDetail(
-            navController = NavController(LocalContext.current),
-            ArticleList.first()
-        )
-    }
-}*/
