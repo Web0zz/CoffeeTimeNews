@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -21,7 +22,6 @@ import com.web0z.coffeetimenews.ui.util.AppNameText
 import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.viewmodel.HomeViewModel
 import com.web0z.core.model.Article
-import com.web0z.core.model.Category
 
 @ExperimentalPagerApi
 @Composable
@@ -95,42 +95,61 @@ private fun BodyContent(
         navController.navigate(Screen.Detail.route(it.id))
     }
 
-    // TODO will collect from viewmodel
-    val selectedCategory = Category.POPULAR
-
-    Box(
-        modifier = Modifier
-            .padding(top = 25.dp)
-            .fillMaxSize()
-            .background(MaterialTheme.colors.primary),
-        contentAlignment = Alignment.TopCenter,
-    ) {
-        NewsPager(
-            // TODO will ensure not null
-            items = articlesState?.data?.get(selectedCategory)!!,
-            modifier = Modifier
-                .width(375.dp)
-                .height(220.dp)
-                .shadow(
-                    elevation = 4.dp
-                ),
-            onItemSelect = {
-                onArticleClicked(it)
+    if (articlesState != null) {
+        when {
+            articlesState.initialLoad || articlesState.loading -> {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 25.dp)
+                        .fillMaxSize()
+                        .background(MaterialTheme.colors.primary),
+                    contentAlignment = Alignment.TopCenter,
+                ) { }
             }
-        )
-        NewsListBody(
-            modifier = Modifier
-                .padding(
-                    top = 248.dp,
-                ),
-            // TODO will ensure not null
-            sectionArticles = articlesState.data[selectedCategory]!!,
-            selectedCategory = selectedCategory,
-            onCategorySelected = {
-                //TODO will set selectedCategory via viewmodel
-            },
-            navController = navController,
-        )
+            articlesState.hasError -> {
+                navController.navigate(
+                    Screen.Error.route(
+                        articlesState.error ?: stringResource(id = R.string.default_error_message)
+                    )
+                )
+            }
+            else -> {
+                Box(
+                    modifier = Modifier
+                        .padding(top = 25.dp)
+                        .fillMaxSize()
+                        .background(MaterialTheme.colors.primary),
+                    contentAlignment = Alignment.TopCenter,
+                ) {
+                    NewsPager(
+                        // TODO will ensure not null
+                        items = articlesState.data!!.articlesList,
+                        modifier = Modifier
+                            .width(375.dp)
+                            .height(220.dp)
+                            .shadow(
+                                elevation = 4.dp
+                            ),
+                        onItemSelect = {
+                            onArticleClicked(it)
+                        }
+                    )
+                    NewsListBody(
+                        modifier = Modifier
+                            .padding(
+                                top = 248.dp,
+                            ),
+                        // TODO will ensure not null
+                        sectionArticles = articlesState.data.articlesList,
+                        selectedCategory = articlesState.data.selectedHomeCategory,
+                        onCategorySelected = {
+                            viewModel.onHomeCategorySelected(it)
+                        },
+                        navController = navController,
+                    )
+                }
+            }
+        }
     }
 }
 

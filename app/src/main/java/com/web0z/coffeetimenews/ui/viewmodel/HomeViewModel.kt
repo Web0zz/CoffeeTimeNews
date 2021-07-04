@@ -17,9 +17,14 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository
 ): ViewModel() {
-    private val _state = MutableStateFlow(UiState<HashMap<Category, List<Article>>>())
 
-    val state: StateFlow<UiState<HashMap<Category, List<Article>>>>
+    private val selectedCategory = MutableStateFlow(Category.POPULAR)
+
+    private val categories = MutableStateFlow(Category.values().asList())
+
+    private val _state = MutableStateFlow(UiState<HomeViewData>())
+
+    val state: StateFlow<UiState<HomeViewData>>
         get() = _state
 
     init {
@@ -30,17 +35,61 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             coffeeTimeNewsRepository.getArticleByCategory(category.name)
                 .onStart {
-                    _state.value = UiState(loading = true, error = null, data = null)
+                    _state.value =
+                        UiState(
+                            loading = true,
+                            error = null,
+                            data = HomeViewData(
+                                categories.value,
+                                selectedCategory.value,
+                                emptyList()
+                            )
+                        )
                 }
                 .catch {
-                    _state.value = UiState(loading = false, error = it.localizedMessage, data = null)
+                    _state.value = UiState(
+                        loading = false,
+                        error = it.localizedMessage,
+                        data = HomeViewData(
+                            categories.value,
+                            selectedCategory.value,
+                            emptyList()
+                        )
+                    )
                 }
                 .collect {  result ->
                     when(result) {
-                        is ResponseResult.Success -> _state.value = UiState(loading = false, error = null, data = hashMapOf(Pair(category, result.data)))
-                        is ResponseResult.Error -> _state.value = UiState(loading = false, error = "Couldn't find any data", data = null)
+                        is ResponseResult.Success -> _state.value =
+                            UiState(
+                                loading = false,
+                                error = null,
+                                data = HomeViewData(
+                                    categories.value,
+                                    selectedCategory.value,
+                                    result.data
+                                )
+                            )
+                        is ResponseResult.Error -> _state.value = UiState(
+                            loading = false,
+                            error = "Couldn't find any data",
+                            data = HomeViewData(
+                                categories.value,
+                                selectedCategory.value,
+                                emptyList()
+                            )
+                        )
                     }
                 }
         }
     }
+
+    fun onHomeCategorySelected(category: Category) {
+        selectedCategory.value = category
+    }
 }
+
+data class HomeViewData(
+    val homeCategories: List<Category> = emptyList(),
+    val selectedHomeCategory: Category = Category.POPULAR,
+    val articlesList: List<Article> = emptyList()
+)
