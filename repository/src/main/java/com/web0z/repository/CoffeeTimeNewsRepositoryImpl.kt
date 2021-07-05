@@ -11,7 +11,7 @@ import com.web0z.data.remote.util.getResponse
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
-class CoffeeTimeNewsRepositoryImp @Inject constructor(
+class CoffeeTimeNewsRepositoryImpl @Inject constructor(
     private val articleService: CoffeeTimeNewsService,
     private val articlesDao: ArticlesDao
 ) : CoffeeTimeNewsRepository {

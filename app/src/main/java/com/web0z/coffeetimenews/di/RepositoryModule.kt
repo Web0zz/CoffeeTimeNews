@@ -1,7 +1,7 @@
 package com.web0z.coffeetimenews.di
 
 import com.web0z.core.repository.CoffeeTimeNewsRepository
-import com.web0z.repository.CoffeeTimeNewsRepositoryImp
+import com.web0z.repository.CoffeeTimeNewsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ interface RepositoryModule {
 
     @Binds
     @Repository
-    fun coffeeTimeNewsRepository(coffeeTimeNewsRepositoryImp: CoffeeTimeNewsRepositoryImp): CoffeeTimeNewsRepository
+    fun coffeeTimeNewsRepository(coffeeTimeNewsRepositoryImpl: CoffeeTimeNewsRepositoryImpl): CoffeeTimeNewsRepository
 }
 
 @Qualifier

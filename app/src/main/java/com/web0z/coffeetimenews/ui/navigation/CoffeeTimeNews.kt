@@ -24,7 +24,7 @@ const val COFFEE_NAV_HOST_ROUTE = "coffee-main-route"
 @ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Composable
-fun CoffeeTimeNavigation(toggleTheme: () -> Unit, onTimeout: () -> Unit) {
+fun CoffeeTimeNavigation(toggleTheme: () -> Unit) {
     val navController = rememberNavController()
 
     NavHost(
@@ -33,7 +33,7 @@ fun CoffeeTimeNavigation(toggleTheme: () -> Unit, onTimeout: () -> Unit) {
         route = COFFEE_NAV_HOST_ROUTE
     ) {
         composable(Screen.Splash.route) {
-            SplashScreen(onTimeout)
+            SplashScreen(navController = navController)
         }
         composable(Screen.Home.route) {
             HomeScreen(

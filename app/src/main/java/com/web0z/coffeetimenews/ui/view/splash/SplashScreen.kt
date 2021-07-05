@@ -16,20 +16,23 @@ import androidx.navigation.NavController
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.util.AppNameText
+import com.web0z.coffeetimenews.ui.view.Screen
 import kotlinx.coroutines.delay
 
 private const val SplashWaitTime: Long = 2000
 
 @Composable
 fun SplashScreen(
-    onTimeout: () -> Unit
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colors.primary)
     ) {
-        val currentOnTimeout by rememberUpdatedState(onTimeout)
+        val currentOnTimeout by rememberUpdatedState {
+            navController.navigate(Screen.Home.route)
+        }
 
         LaunchedEffect(Unit) {
             delay(SplashWaitTime)

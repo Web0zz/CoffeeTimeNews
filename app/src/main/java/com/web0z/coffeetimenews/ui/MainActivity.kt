@@ -1,19 +1,38 @@
 package com.web0z.coffeetimenews.ui
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.compose.rememberNavController
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.web0z.coffeetimenews.R
+import com.web0z.coffeetimenews.ui.navigation.CoffeeTimeNavigation
+import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.viewmodel.ArticleDetailViewModel
+import com.web0z.core.utils.PreferenceManager
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.components.ActivityComponent
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @AndroidEntryPoint
+@ExperimentalFoundationApi
+@ExperimentalPagerApi
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
 
     @EntryPoint
     @InstallIn(ActivityComponent::class)
@@ -21,15 +40,42 @@ class MainActivity : AppCompatActivity() {
         fun articleDetailViewModelFactory(): ArticleDetailViewModel.Factory
     }
 
-    @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContent {
-            val navController = rememberNavController()
+            CoffeeTimeNewsMain()
+        }
+        observeUiTheme()
+    }
 
-            CoffeeTimeNewsApp()
+    @Composable
+    private fun CoffeeTimeNewsMain() {
+        val darkMode by preferenceManager.uiModeFlow.collectAsState(initial = isSystemInDarkTheme())
+
+        val toggleTheme: () -> Unit = {
+            lifecycleScope.launch { preferenceManager.setDarkMode(!darkMode) }
+        }
+
+        CoffeeTimeNewsTheme(darkTheme = darkMode) {
+            // A surface container using the 'background' color from the theme
+            Surface(color = MaterialTheme.colors.background) {
+                CoffeeTimeNavigation(
+                    toggleTheme = toggleTheme
+                )
+            }
         }
     }
 
-    //TODO Dark mode state will handle here
+    private fun observeUiTheme() {
+        lifecycleScope.launchWhenStarted {
+            preferenceManager.uiModeFlow.collect {
+                val mode = when (it) {
+                    true -> AppCompatDelegate.MODE_NIGHT_YES
+                    false -> AppCompatDelegate.MODE_NIGHT_NO
+                }
+                AppCompatDelegate.setDefaultNightMode(mode)
+            }
+        }
+    }
 }
