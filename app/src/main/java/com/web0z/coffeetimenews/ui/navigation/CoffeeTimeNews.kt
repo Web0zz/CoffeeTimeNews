@@ -3,6 +3,7 @@ package com.web0z.coffeetimenews.ui.navigation
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,9 +11,9 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
-import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.view.article.ArticleDetail
+import com.web0z.coffeetimenews.ui.view.article.articleDetailViewModel
 import com.web0z.coffeetimenews.ui.view.error.ErrorPage
 import com.web0z.coffeetimenews.ui.view.home.HomeScreen
 import com.web0z.coffeetimenews.ui.view.splash.SplashScreen
@@ -23,7 +24,7 @@ const val COFFEE_NAV_HOST_ROUTE = "coffee-main-route"
 @ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Composable
-fun CoffeeTimeNavigation() {
+fun CoffeeTimeNavigation(toggleTheme: () -> Unit, onTimeout: () -> Unit) {
     val navController = rememberNavController()
 
     NavHost(
@@ -32,10 +33,14 @@ fun CoffeeTimeNavigation() {
         route = COFFEE_NAV_HOST_ROUTE
     ) {
         composable(Screen.Splash.route) {
-            SplashScreen(navController = navController)
+            SplashScreen(onTimeout)
         }
         composable(Screen.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(
+                toggleTheme = toggleTheme,
+                navController = navController,
+                viewModel = hiltViewModel()
+            )
         }
         composable(
             Screen.Detail.route,
@@ -47,8 +52,7 @@ fun CoffeeTimeNavigation() {
                 ?: throw IllegalStateException("'articleId' shouldn't be null")
             ArticleDetail(
                 navController = navController,
-                // TODO viewModel(articleId) return Article
-                article = ArticleList.first()
+                articleDetailViewModel(articleId)
             )
         }
         composable(
@@ -66,3 +70,4 @@ fun CoffeeTimeNavigation() {
         }
     }
 }
+

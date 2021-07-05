@@ -27,7 +27,8 @@ import com.web0z.core.model.Article
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel,
+    toggleTheme: () -> Unit
 ) {
     val lifecycleScope = LocalLifecycleOwner.current.lifecycleScope
 
@@ -36,7 +37,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            TopBar()
+            TopBar(toggleTheme)
         },
         content = {
             BodyContent(
@@ -49,7 +50,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun TopBar() {
+private fun TopBar(toggleTheme: () -> Unit) {
     Box(
         Modifier
             .padding(
@@ -69,7 +70,7 @@ private fun TopBar() {
         }
         IconButton(
             onClick = {
-                /* TODO create main util fail and make light/dark mode changer */
+                toggleTheme()
             },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
