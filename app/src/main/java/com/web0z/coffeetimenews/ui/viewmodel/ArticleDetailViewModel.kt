@@ -13,11 +13,9 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class ArticleDetailViewModel @AssistedInject constructor(
     @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository,
     @Assisted private val articleId: String
