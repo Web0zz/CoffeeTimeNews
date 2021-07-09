@@ -2,6 +2,141 @@
   "status":200,
   "message":"Not found error",
   "articles": [
-
+    {
+      "id": "83047242-fd82-45e5-ab78-9f618cd323cb",
+      "title": "bibendum imperdiet nullam orci",
+      "body": "lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus",
+      "writer": "Eolanda Appleford",
+      "article_category": "popular",
+      "publish_time": "9/26/2020",
+      "writer_image": "http://dummyimage.com/135x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/157x100.png/dddddd/000000"
+    }, {
+      "id": "e6b0e14e-da75-4fbf-a224-33346a25579e",
+      "title": "quam sapien varius ut",
+      "body": "congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum",
+      "writer": "Leslie Nyssens",
+      "article_category": "popular",
+      "publish_time": "6/21/2021",
+      "writer_image": "http://dummyimage.com/116x100.png/5fa2dd/ffffff",
+      "article_image": "http://dummyimage.com/101x100.png/cc0000/ffffff"
+    }, {
+      "id": "c8f7bc07-7f25-4ecb-b183-e1fb9ecdc486",
+      "title": "sit amet sapien dignissim vestibulum vestibulum",
+      "body": "habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget",
+      "writer": "Kleon Helling",
+      "article_category": "new",
+      "publish_time": "10/17/2020",
+      "writer_image": "http://dummyimage.com/137x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/250x100.png/ff4444/ffffff"
+    }, {
+      "id": "a9fe8385-fee8-4958-9f9e-ca4f8235ffd3",
+      "title": "lacinia erat vestibulum sed magna",
+      "body": "vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt",
+      "writer": "Barclay Bikker",
+      "article_category": "art",
+      "publish_time": "4/22/2021",
+      "writer_image": "http://dummyimage.com/162x100.png/5fa2dd/ffffff",
+      "article_image": "http://dummyimage.com/130x100.png/5fa2dd/ffffff"
+    }, {
+      "id": "719e5f6a-c402-4ff3-89ee-250d1de3f11f",
+      "title": "volutpat erat quisque erat eros",
+      "body": "aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit",
+      "writer": "Kelwin Kitchingham",
+      "article_category": "economics",
+      "publish_time": "9/14/2020",
+      "writer_image": "http://dummyimage.com/210x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/167x100.png/5fa2dd/ffffff"
+    }, {
+      "id": "0e8a9812-a34f-4cab-afbf-33e3df367387",
+      "title": "faucibus cursus urna ut tellus",
+      "body": "id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus",
+      "writer": "Rozanna Congrave",
+      "article_category": "art",
+      "publish_time": "4/4/2021",
+      "writer_image": "http://dummyimage.com/215x100.png/5fa2dd/ffffff",
+      "article_image": "http://dummyimage.com/124x100.png/cc0000/ffffff"
+    }, {
+      "id": "d932cf2a-062b-4794-bc40-2a98c946dd15",
+      "title": "in lacus curabitur at ipsum ac",
+      "body": "nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu",
+      "writer": "Ebba Yantsev",
+      "article_category": "popular",
+      "publish_time": "1/22/2021",
+      "writer_image": "http://dummyimage.com/226x100.png/ff4444/ffffff",
+      "article_image": "http://dummyimage.com/185x100.png/cc0000/ffffff"
+    }, {
+      "id": "b16484e2-25cd-4afb-ba7f-3ad9e28a78d8",
+      "title": "quis orci eget orci",
+      "body": "sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque",
+      "writer": "Freemon Gorghetto",
+      "article_category": "health",
+      "publish_time": "10/1/2020",
+      "writer_image": "http://dummyimage.com/117x100.png/ff4444/ffffff",
+      "article_image": "http://dummyimage.com/104x100.png/ff4444/ffffff"
+    }, {
+      "id": "629bb858-0f79-4f8c-b466-bb8a189baeaa",
+      "title": "penatibus et magnis dis",
+      "body": "suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat",
+      "writer": "Pamela Sealy",
+      "article_category": "popular",
+      "publish_time": "1/22/2021",
+      "writer_image": "http://dummyimage.com/219x100.png/5fa2dd/ffffff",
+      "article_image": "http://dummyimage.com/145x100.png/cc0000/ffffff"
+    }, {
+      "id": "97ab991f-6da2-4504-9b39-b08323f638d1",
+      "title": "vitae consectetuer eget rutrum at",
+      "body": "non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient",
+      "writer": "Antonie Frankish",
+      "article_category": "economics",
+      "publish_time": "4/16/2021",
+      "writer_image": "http://dummyimage.com/217x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/242x100.png/dddddd/000000"
+    }, {
+      "id": "82070750-18b7-4a77-9ed5-26a34fcdd124",
+      "title": "consectetuer adipiscing elit proin risus praesent",
+      "body": "vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis",
+      "writer": "Mindy Islep",
+      "article_category": "sport",
+      "publish_time": "2/20/2021",
+      "writer_image": "http://dummyimage.com/151x100.png/ff4444/ffffff",
+      "article_image": "http://dummyimage.com/190x100.png/dddddd/000000"
+    }, {
+      "id": "71cb6db8-76c0-4cc0-b44a-18da3577d863",
+      "title": "mi nulla ac enim",
+      "body": "posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel",
+      "writer": "Lockwood Peppin",
+      "article_category": "science",
+      "publish_time": "9/13/2020",
+      "writer_image": "http://dummyimage.com/133x100.png/dddddd/000000",
+      "article_image": "http://dummyimage.com/219x100.png/5fa2dd/ffffff"
+    }, {
+      "id": "67fa38e9-b0b0-4321-9250-64a6c6916646",
+      "title": "fermentum donec ut mauris eget massa",
+      "body": "integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla",
+      "writer": "Arlyn Gumley",
+      "article_category": "economics",
+      "publish_time": "3/31/2021",
+      "writer_image": "http://dummyimage.com/112x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/146x100.png/dddddd/000000"
+    }, {
+      "id": "5355d945-5875-413f-b1a9-97616691da79",
+      "title": "est congue elementum in",
+      "body": "porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante",
+      "writer": "Amandie Atwill",
+      "article_category": "lifestyle",
+      "publish_time": "10/11/2020",
+      "writer_image": "http://dummyimage.com/152x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/174x100.png/5fa2dd/ffffff"
+    }, {
+      "id": "aa87f771-db02-497f-9b96-b20c56b9c04a",
+      "title": "mi sit amet lobortis",
+      "body": "duis ac nibh fusce lacus purus aliquet at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer",
+      "writer": "Kai Truckell",
+      "article_category": "popular",
+      "publish_time": "9/13/2020",
+      "writer_image": "http://dummyimage.com/211x100.png/cc0000/ffffff",
+      "article_image": "http://dummyimage.com/226x100.png/dddddd/000000"
+    }
   ]
 }
