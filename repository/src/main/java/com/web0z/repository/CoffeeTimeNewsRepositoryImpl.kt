@@ -29,7 +29,6 @@ class CoffeeTimeNewsRepositoryImpl @Inject constructor(
             )
         }
 
-    // TODO template function, will change later
     override suspend fun getArticleByCategory(article_category: String): Flow<ResponseResult<List<Article>>> = flow {
         val articleResponse = articleService.getArticlesByCategory(article_category).getResponse()
 

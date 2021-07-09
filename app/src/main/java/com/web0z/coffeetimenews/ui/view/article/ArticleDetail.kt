@@ -1,7 +1,6 @@
 package com.web0z.coffeetimenews.ui.view.article
 
 import android.app.Activity
-import android.content.res.Configuration
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,7 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -30,11 +28,11 @@ import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.MainActivity
 import com.web0z.coffeetimenews.ui.theme.*
 import com.web0z.coffeetimenews.ui.util.AppNameText
-import com.web0z.coffeetimenews.ui.util.ExArticle
-import com.web0z.coffeetimenews.ui.util.ArticleList
 import com.web0z.coffeetimenews.ui.viewmodel.ArticleDetailViewModel
 import com.web0z.core.model.Article
 import dagger.hilt.android.EntryPointAccessors
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @ExperimentalFoundationApi
 @Composable
@@ -64,6 +62,7 @@ fun ArticleDetail(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class, com.google.accompanist.pager.ExperimentalPagerApi::class)
 @Composable
 fun articleDetailViewModel(articleId: String): ArticleDetailViewModel {
     val factory = EntryPointAccessors.fromActivity(

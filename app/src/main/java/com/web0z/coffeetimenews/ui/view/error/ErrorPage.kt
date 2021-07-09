@@ -23,7 +23,6 @@ import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 
 @Composable
 fun ErrorPage(
-    // TODO will come data class
     errorMessage: String,
     navController: NavController
 ) {
@@ -65,7 +64,6 @@ private fun Content(
                 color = lightRed
             )
             Text(
-                // TODO Error message from data class
                 text = errorMessage,
                 modifier = Modifier
                     .padding(top = 5.dp)

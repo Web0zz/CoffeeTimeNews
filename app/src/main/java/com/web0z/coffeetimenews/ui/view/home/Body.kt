@@ -93,7 +93,6 @@ private fun NewsCategoryTabs(
         backgroundColor = MaterialTheme.colors.primary,
         edgePadding = 15.dp,
     ) {
-        // TODO function will taken from viewmodel later
         Category.values().forEachIndexed { index, category ->
             Tab(
                 selected = index == selectedIndex,
@@ -120,7 +119,6 @@ fun ArticleListContent(
     navController: NavController
 ) {
     Box(
-        // TODO click fun will replace with model data id
         modifier = modifier
             .clickable(
                 onClick = {

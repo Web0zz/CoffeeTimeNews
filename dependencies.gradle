@@ -1,4 +1,6 @@
 ext {
+    gradle_version = '7.1.0-alpha03'
+
     // Compose
     compose_version = '1.0.0-rc01'
     accompanist_version = '0.12.0'

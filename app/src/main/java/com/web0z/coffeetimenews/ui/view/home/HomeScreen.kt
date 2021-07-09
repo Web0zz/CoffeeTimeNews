@@ -30,8 +30,6 @@ fun HomeScreen(
     viewModel: HomeViewModel,
     toggleTheme: () -> Unit
 ) {
-    val lifecycleScope = LocalLifecycleOwner.current.lifecycleScope
-
     Scaffold(
         // scaffoldState = scaffoldState,
         modifier = Modifier
@@ -123,7 +121,6 @@ private fun BodyContent(
                     contentAlignment = Alignment.TopCenter,
                 ) {
                     NewsPager(
-                        // TODO will ensure not null
                         items = articlesState.data!!.articlesList,
                         modifier = Modifier
                             .width(375.dp)
@@ -140,7 +137,6 @@ private fun BodyContent(
                             .padding(
                                 top = 248.dp,
                             ),
-                        // TODO will ensure not null
                         sectionArticles = articlesState.data.articlesList,
                         selectedCategory = articlesState.data.selectedHomeCategory,
                         onCategorySelected = {

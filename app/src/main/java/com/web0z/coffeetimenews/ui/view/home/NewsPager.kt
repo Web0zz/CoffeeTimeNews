@@ -66,9 +66,7 @@ private fun ArticleContent(
         Card (
             shape = RoundedCornerShape(5.dp)
         ) {
-            // TODO Will add verticalGradiant
             Image(
-                //TODO coil image loader will be configured
                 painter = rememberCoilPainter(article.article_image),
                 contentDescription = null,
                 modifier = Modifier
