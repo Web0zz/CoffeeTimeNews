@@ -31,8 +31,6 @@ import com.web0z.coffeetimenews.ui.util.AppNameText
 import com.web0z.coffeetimenews.ui.viewmodel.ArticleDetailViewModel
 import com.web0z.core.model.Article
 import dagger.hilt.android.EntryPointAccessors
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.InternalCoroutinesApi
 
 @ExperimentalFoundationApi
 @Composable

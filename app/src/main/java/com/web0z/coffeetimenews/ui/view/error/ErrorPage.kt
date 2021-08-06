@@ -1,6 +1,5 @@
 package com.web0z.coffeetimenews.ui.view.error
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -16,17 +15,14 @@ import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightRed
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 
 @Composable
 fun ErrorPage(
     errorMessage: String,
     navController: NavController
 ) {
-    Scaffold() {
+    Scaffold {
         Content(errorMessage, navController)
     }
 }
@@ -86,27 +82,5 @@ private fun Content(
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun DarkThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        ErrorPage(
-            errorMessage = "Something's missing",
-            navController = NavController(LocalContext.current)
-        )
-    }
-}
-
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun LightThemePreviewHome() {
-    CoffeeTimeNewsTheme {
-        ErrorPage(
-            errorMessage = "Something's missing",
-            navController = NavController(LocalContext.current)
-        )
     }
 }

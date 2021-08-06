@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface CoffeeTimeNewsService {
-    @GET("/{category}")
+    @GET("/article/{category}")
     suspend fun getArticlesByCategory(
         @Path("category") category: String
     ): Response<ArticlesResponse>

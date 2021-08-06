@@ -33,7 +33,7 @@ class HomeViewModel @Inject constructor(
 
     fun getArticles(category: Category) {
         viewModelScope.launch {
-            coffeeTimeNewsRepository.getArticleByCategory(category.name)
+            coffeeTimeNewsRepository.getArticleByCategory(category.category)
                 .onStart {
                     _state.value =
                         UiState(
@@ -71,7 +71,7 @@ class HomeViewModel @Inject constructor(
                             )
                         is ResponseResult.Error -> _state.value = UiState(
                             loading = false,
-                            error = "Couldn't find any data",
+                            error = result.message,
                             data = HomeViewData(
                                 categories.value,
                                 selectedCategory.value,

@@ -21,7 +21,6 @@ class NetworkModule {
     @Provides
     fun provideCoffeeTimeNewsService(): CoffeeTimeNewsService {
         return baseRetrofitBuilder
-            .client(OkHttpClient())
             .build()
             .create(CoffeeTimeNewsService::class.java)
     }
