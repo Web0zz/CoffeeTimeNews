@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("key.properties")))
+
+
 android {
     compileSdkVersion ProjectConfig.compileSdkVersion
     buildToolsVersion ProjectConfig.buildToolsVersion
@@ -9,7 +13,10 @@ android {
     defaultConfig {
         minSdkVersion ProjectConfig.minSdkVersion
         targetSdkVersion ProjectConfig.targetSdkVersion
+
+        buildConfigField "String", "API_TOKEN",localProperties['API_TOKEN']
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
