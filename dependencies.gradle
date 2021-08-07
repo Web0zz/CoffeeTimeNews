@@ -1,5 +1,5 @@
 ext {
-    gradle_version = '7.1.0-alpha03'
+    gradle_version = '7.1.0-alpha06'
 
     // Compose
     compose_version = '1.1.0-alpha01'
@@ -8,7 +8,7 @@ ext {
     viewmodel_compose_version = '1.0.0-alpha07'
 
     // Kotlin
-    kotlin_version = '1.5.10'
+    kotlin_version = '1.5.21'
     coroutines_version = '1.4.2'
     coroutinesVersion = '1.5.0'
     lifecycle_version = '2.3.1'
