@@ -6,6 +6,7 @@ import com.web0z.core.repository.ResponseResult
 import com.web0z.data.local.dao.ArticlesDao
 import com.web0z.data.local.entity.ArticleEntity
 import com.web0z.data.remote.api.CoffeeTimeNewsService
+import com.web0z.data.remote.model.State
 import com.web0z.data.remote.util.getResponse
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class CoffeeTimeNewsRepositoryImpl @Inject constructor(
         val articleResponse = articleService.getArticlesByCategory(article_category).getResponse()
 
         val state = when (articleResponse.status) {
-            200 -> {
+            State.SUCCESS -> {
                 insertArticle(articleResponse.articles)
                 ResponseResult.success(articleResponse.articles)
             }

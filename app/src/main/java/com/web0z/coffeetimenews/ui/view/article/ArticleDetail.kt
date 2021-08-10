@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.accompanist.coil.rememberCoilPainter
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.MainActivity
 import com.web0z.coffeetimenews.ui.theme.*
@@ -111,7 +112,7 @@ private fun ArticleHead(article: Article) {
                 .verticalScroll(rememberScrollState())
         ) {
             Image(
-                painter = painterResource(id = R.drawable.elon2),
+                painter = rememberCoilPainter(article.article_image),
                 contentDescription = null,
                 modifier = Modifier
                     .width(411.dp)
@@ -161,7 +162,7 @@ private fun ArticleHead(article: Article) {
                         )
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.elon2),
+                        painter = rememberCoilPainter(article.writer_image),
                         contentDescription = null,
                         modifier = Modifier
                             .clip(shape = RoundedCornerShape(15.dp))
