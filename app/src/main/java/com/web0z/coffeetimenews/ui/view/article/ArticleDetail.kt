@@ -190,6 +190,7 @@ private fun ArticleHead(article: Article) {
 private fun TopBar(navController: NavController) {
     Box(
         Modifier
+            .padding(start = 12.dp)
             .fillMaxWidth()
             .height(71.dp)
             .background(MaterialTheme.colors.primary.copy(alpha = 0.95f))
@@ -202,7 +203,6 @@ private fun TopBar(navController: NavController) {
                     navController.navigateUp()
                 }
                 .align(Alignment.CenterStart)
-                .padding(start = 12.dp)
                 .width(32.08.dp)
                 .height(32.08.dp),
             tint = MaterialTheme.colors.onPrimary

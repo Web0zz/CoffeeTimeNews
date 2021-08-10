@@ -77,7 +77,7 @@ private fun ArticleContent(
                 modifier = Modifier
                     .padding(
                         start = 14.dp,
-                        top = 157.dp
+                        top = 152.dp
                     )
             ) {
                 Text(

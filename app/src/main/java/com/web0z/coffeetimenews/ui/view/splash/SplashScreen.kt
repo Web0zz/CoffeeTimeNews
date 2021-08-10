@@ -31,7 +31,11 @@ fun SplashScreen(
             .background(color = MaterialTheme.colors.primary)
     ) {
         val currentOnTimeout by rememberUpdatedState {
-            navController.navigate(Screen.Home.route)
+            navController.navigate(Screen.Home.route) {
+                popUpTo(Screen.Splash.route) {
+                    inclusive = true
+                }
+            }
         }
 
         LaunchedEffect(Unit) {
