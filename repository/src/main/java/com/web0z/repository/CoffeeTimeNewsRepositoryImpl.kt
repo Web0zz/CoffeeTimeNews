@@ -29,6 +29,22 @@ class CoffeeTimeNewsRepositoryImpl @Inject constructor(
             )
         }
 
+    override suspend fun getArticleByIdFromApi(articleId: String): Flow<ResponseResult<Article>> = flow {
+        val articleResponse = articleService.getArticleByIdFromApi(articleId).getResponse()
+
+        val state = when (articleResponse.status) {
+            State.SUCCESS -> {
+                if (articleResponse.article != null) {
+                    insertArticle(listOf(articleResponse.article!!))
+                    ResponseResult.success(articleResponse.article!!)
+                } else { ResponseResult.error("Article response is empty")}
+            }
+            else -> ResponseResult.error(articleResponse.message)
+        }
+
+        emit(state)
+    }.catch { emit(ResponseResult.error("Can't request")) }
+
     override suspend fun getArticleByCategory(article_category: String): Flow<ResponseResult<List<Article>>> = flow {
         val articleResponse = articleService.getArticlesByCategory(article_category).getResponse()
 
