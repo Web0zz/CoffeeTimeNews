@@ -85,6 +85,7 @@ class HomeViewModel @Inject constructor(
 
     fun onHomeCategorySelected(category: Category) {
         selectedCategory.value = category
+        getArticles(category)
     }
 }
 
