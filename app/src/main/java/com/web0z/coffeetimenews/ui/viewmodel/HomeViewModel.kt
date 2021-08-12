@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
         getArticles(Category.POPULAR)
     }
 
-    fun getArticles(category: Category) {
+    private fun getArticles(category: Category) {
         viewModelScope.launch {
             coffeeTimeNewsRepository.getArticleByCategory(category.category)
                 .onStart {

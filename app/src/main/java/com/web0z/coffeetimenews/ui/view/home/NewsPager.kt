@@ -67,7 +67,7 @@ private fun ArticleContent(
             shape = RoundedCornerShape(5.dp)
         ) {
             Image(
-                painter = rememberCoilPainter(article.article_image),
+                painter = rememberCoilPainter(article.article_image, fadeIn = true),
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxSize(),

@@ -114,7 +114,7 @@ private fun ArticleHead(article: Article) {
                 .verticalScroll(rememberScrollState())
         ) {
             Image(
-                painter = rememberCoilPainter(article.article_image),
+                painter = rememberCoilPainter(article.article_image, fadeIn = true),
                 contentDescription = null,
                 modifier = Modifier
                     .width(411.dp)

@@ -139,7 +139,7 @@ fun ArticleListContent(
         ) {
             Row {
                 Image(
-                    painter = rememberCoilPainter(article.article_image),
+                    painter = rememberCoilPainter(article.article_image, fadeIn = true),
                     contentDescription = null,
                     modifier = Modifier
                         .width(140.dp)
