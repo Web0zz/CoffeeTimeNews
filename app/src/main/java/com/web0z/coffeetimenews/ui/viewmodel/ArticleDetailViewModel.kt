@@ -29,7 +29,6 @@ class ArticleDetailViewModel @AssistedInject constructor(
         getArticle()
     }
 
-    // TODO will setup cache algorithm
     private fun getArticle() {
         viewModelScope.launch {
             coffeeTimeNewsRepository.getArticleById(articleId)

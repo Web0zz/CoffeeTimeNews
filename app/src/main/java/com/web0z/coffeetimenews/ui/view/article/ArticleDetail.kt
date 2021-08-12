@@ -44,18 +44,20 @@ fun ArticleDetail(
     if(article == null) {
         //TODO loading state
     } else {
-        LazyColumn(
-            modifier = Modifier
-                .background(MaterialTheme.colors.primary)
-        ) {
-            stickyHeader {
-                TopBar(navController)
-            }
-            item {
-                ArticleHead(article.data!!)
-            }
-            item {
-                BodyText(article.data!!)
+        if (!article.loading && !article.hasError) {
+            LazyColumn(
+                modifier = Modifier
+                    .background(MaterialTheme.colors.primary)
+            ) {
+                stickyHeader {
+                    TopBar(navController)
+                }
+                item {
+                    ArticleHead(article.data!!)
+                }
+                item {
+                    BodyText(article.data!!)
+                }
             }
         }
     }
