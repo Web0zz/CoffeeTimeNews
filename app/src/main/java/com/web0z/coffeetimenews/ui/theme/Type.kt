@@ -60,9 +60,9 @@ val CoffeeTimeNewsTypography = Typography(
     ),
     body1 = TextStyle(
         fontFamily = Andada,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Light,
         fontSize = 16.sp,
-        letterSpacing = 3.sp,
+        letterSpacing = 1.4.sp,
         lineHeight = 18.sp
     ),
     body2 = TextStyle(
