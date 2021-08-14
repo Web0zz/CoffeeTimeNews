@@ -85,7 +85,6 @@ private fun BodyContent(
     navController: NavController,
     viewModel: HomeViewModel
 ) {
-
     val onArticleClicked: (Article) -> Unit = {
         println("Article Clicked")
         navController.navigate(Screen.Detail.route(it.id))

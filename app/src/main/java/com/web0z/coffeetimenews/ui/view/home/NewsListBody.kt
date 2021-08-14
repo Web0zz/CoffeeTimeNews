@@ -40,12 +40,7 @@ fun NewsListBody(
     if(articlesState != null) {
         when {
             articlesState.initialLoad || articlesState.loading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.primary),
-                    contentAlignment = Alignment.TopCenter,
-                ) { }
+                // TODO loading state will come
             }
             articlesState.hasError -> {
                 navController.navigate(

@@ -36,16 +36,11 @@ fun NewsPager(
     navController: NavController
 ) {
     val pagerNews = viewModel.pagerNews.collectAsState(initial = null).value
-
+        // TODO loading state will come
     if (pagerNews != null) {
         when {
             pagerNews.initialLoad || pagerNews.loading -> {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.primary),
-                    contentAlignment = Alignment.TopCenter,
-                ) { }
+
             }
             pagerNews.hasError -> {
                 navController.navigate(
