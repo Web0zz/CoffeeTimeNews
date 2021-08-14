@@ -85,65 +85,42 @@ private fun BodyContent(
     navController: NavController,
     viewModel: HomeViewModel
 ) {
-    val articlesState = viewModel.state.collectAsState(initial = null).value
 
     val onArticleClicked: (Article) -> Unit = {
         println("Article Clicked")
         navController.navigate(Screen.Detail.route(it.id))
     }
 
-    if (articlesState != null) {
-        when {
-            articlesState.initialLoad || articlesState.loading -> {
-                Box(
-                    modifier = Modifier
-                        .padding(top = 25.dp)
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.primary),
-                    contentAlignment = Alignment.TopCenter,
-                ) { }
-            }
-            articlesState.hasError -> {
-                navController.navigate(
-                    Screen.Error.route(
-                        articlesState.error ?: stringResource(id = R.string.default_error_message)
-                    )
-                )
-            }
-            else -> {
-                Box(
-                    modifier = Modifier
-                        .padding(top = 25.dp)
-                        .fillMaxSize()
-                        .background(MaterialTheme.colors.primary),
-                    contentAlignment = Alignment.TopCenter,
-                ) {
-                    NewsPager(
-                        items = articlesState.data!!.articlesList,
-                        modifier = Modifier
-                            .width(375.dp)
-                            .height(220.dp)
-                            .shadow(
-                                elevation = 4.dp
-                            ),
-                        onItemSelect = {
-                            onArticleClicked(it)
-                        }
-                    )
-                    NewsListBody(
-                        modifier = Modifier
-                            .padding(
-                                top = 248.dp,
-                            ),
-                        sectionArticles = articlesState.data.articlesList,
-                        selectedCategory = articlesState.data.selectedHomeCategory,
-                        onCategorySelected = {
-                            viewModel.onHomeCategorySelected(it)
-                        },
-                        navController = navController,
-                    )
-                }
-            }
-        }
+    Box(
+        modifier = Modifier
+            .padding(top = 25.dp)
+            .fillMaxSize()
+            .background(MaterialTheme.colors.primary),
+        contentAlignment = Alignment.TopCenter,
+    ) {
+        NewsPager(
+            modifier = Modifier
+                .width(375.dp)
+                .height(220.dp)
+                .shadow(
+                    elevation = 4.dp
+                ),
+            viewModel = viewModel,
+            onItemSelect = {
+                onArticleClicked(it)
+            },
+            navController = navController
+        )
+        NewsListBody(
+            modifier = Modifier
+                .padding(
+                    top = 248.dp,
+                ),
+            viewModel = viewModel,
+            onCategorySelected = {
+                viewModel.onHomeCategorySelected(it)
+            },
+            navController = navController,
+        )
     }
 }

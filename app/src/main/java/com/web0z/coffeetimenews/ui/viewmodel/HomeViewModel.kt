@@ -20,12 +20,15 @@ class HomeViewModel @Inject constructor(
 
     private val selectedCategory = MutableStateFlow(Category.POPULAR)
 
-    private val categories = MutableStateFlow(Category.values().asList())
+    private val _state = MutableStateFlow(UiState<NewsListViewData>())
 
-    private val _state = MutableStateFlow(UiState<HomeViewData>())
-
-    val state: StateFlow<UiState<HomeViewData>>
+    val state: StateFlow<UiState<NewsListViewData>>
         get() = _state
+
+    private val _pagerNews = MutableStateFlow(UiState<List<Article>>())
+
+    val pagerNews: StateFlow<UiState<List<Article>>>
+        get() = _pagerNews
 
     init {
         getArticles(Category.POPULAR)
@@ -39,8 +42,7 @@ class HomeViewModel @Inject constructor(
                         UiState(
                             loading = true,
                             error = null,
-                            data = HomeViewData(
-                                categories.value,
+                            data = NewsListViewData(
                                 selectedCategory.value,
                                 emptyList()
                             )
@@ -50,8 +52,7 @@ class HomeViewModel @Inject constructor(
                     _state.value = UiState(
                         loading = false,
                         error = it.localizedMessage,
-                        data = HomeViewData(
-                            categories.value,
+                        data = NewsListViewData(
                             selectedCategory.value,
                             emptyList()
                         )
@@ -59,21 +60,29 @@ class HomeViewModel @Inject constructor(
                 }
                 .collect {  result ->
                     when(result) {
-                        is ResponseResult.Success -> _state.value =
-                            UiState(
-                                loading = false,
-                                error = null,
-                                data = HomeViewData(
-                                    categories.value,
-                                    selectedCategory.value,
-                                    result.data
+                        is ResponseResult.Success -> {
+                            _state.value =
+                                UiState(
+                                    loading = false,
+                                    error = null,
+                                    data = NewsListViewData(
+                                        selectedCategory.value,
+                                        result.data
+                                    )
                                 )
-                            )
+                            if (_pagerNews.value.data.isNullOrEmpty()) {
+                                _pagerNews.value =
+                                    UiState(
+                                        loading = false,
+                                        error = null,
+                                        data = result.data
+                                    )
+                            }
+                        }
                         is ResponseResult.Error -> _state.value = UiState(
                             loading = false,
                             error = result.message,
-                            data = HomeViewData(
-                                categories.value,
+                            data = NewsListViewData(
                                 selectedCategory.value,
                                 emptyList()
                             )
@@ -89,8 +98,7 @@ class HomeViewModel @Inject constructor(
     }
 }
 
-data class HomeViewData(
-    val homeCategories: List<Category> = emptyList(),
+data class NewsListViewData(
     val selectedHomeCategory: Category = Category.POPULAR,
     val articlesList: List<Article> = emptyList()
 )

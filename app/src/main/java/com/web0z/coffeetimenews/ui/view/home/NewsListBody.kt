@@ -6,11 +6,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -21,6 +23,7 @@ import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
 import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
+import com.web0z.coffeetimenews.ui.viewmodel.HomeViewModel
 import com.web0z.core.model.Category
 import com.web0z.core.model.Article
 
@@ -28,22 +31,44 @@ import com.web0z.core.model.Article
 @Composable
 fun NewsListBody(
     modifier: Modifier,
-    sectionArticles: List<Article>,
-    selectedCategory: Category,
+    viewModel: HomeViewModel,
     onCategorySelected: (Category) -> Unit,
     navController: NavController
 ) {
-    NewsCategoryTabs(
-        selectedCategory,
-        modifier,
-        onCategorySelected
-    )
+    val articlesState = viewModel.state.collectAsState(initial = null).value
 
-    // TODO will change with lazyColumn
-    NewsList(
-        navController,
-        sectionArticles
-    )
+    if(articlesState != null) {
+        when {
+            articlesState.initialLoad || articlesState.loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colors.primary),
+                    contentAlignment = Alignment.TopCenter,
+                ) { }
+            }
+            articlesState.hasError -> {
+                navController.navigate(
+                    Screen.Error.route(
+                        articlesState.error ?: stringResource(id = R.string.default_error_message)
+                    )
+                )
+            }
+            else -> {
+                NewsCategoryTabs(
+                    articlesState.data!!.selectedHomeCategory,
+                    modifier,
+                    onCategorySelected
+                )
+
+                // TODO will change with lazyColumn
+                NewsList(
+                    navController,
+                    articlesState.data.articlesList
+                )
+            }
+        }
+    }
 }
 
 @Composable

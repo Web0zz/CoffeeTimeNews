@@ -193,7 +193,6 @@ private fun ArticleHead(article: Article) {
 private fun TopBar(navController: NavController) {
     Box(
         Modifier
-            .padding(start = 12.dp)
             .fillMaxWidth()
             .height(71.dp)
             .background(MaterialTheme.colors.primary.copy(alpha = 0.95f))
@@ -202,6 +201,7 @@ private fun TopBar(navController: NavController) {
             painter = painterResource(id = R.drawable.ic_back_button),
             contentDescription = null,
             modifier = Modifier
+                .padding(start = 12.dp)
                 .clickable {
                     navController.navigateUp()
                 }
