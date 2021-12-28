@@ -50,7 +50,4 @@ dependencies {
     api "androidx.legacy:legacy-support-v4:$legacySupportVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     api "androidx.room:room-ktx:$roomVersion"
-
-    // Testing
-    testImplementation "junit:junit:$jUnitVersion"
 }

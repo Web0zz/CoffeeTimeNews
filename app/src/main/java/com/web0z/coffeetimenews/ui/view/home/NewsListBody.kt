@@ -16,7 +16,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.LocalImageLoader
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.imageloading.LoadPainterDefaults
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
@@ -136,6 +141,7 @@ private fun NewsCategoryTabs(
     }
 }
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun ArticleListContent(
     modifier: Modifier,
@@ -159,7 +165,14 @@ fun ArticleListContent(
         ) {
             Row {
                 Image(
-                    painter = rememberCoilPainter(article.article_image, fadeIn = true),
+                    painter = rememberImagePainter(
+                        data = article.article_image,
+                        imageLoader = LocalImageLoader.current,
+                        builder = {
+                            if (true == true) this.crossfade(LoadPainterDefaults.FadeInTransitionDuration)
+                            placeholder(0)
+                        }
+                    ),
                     contentDescription = null,
                     modifier = Modifier
                         .width(140.dp)

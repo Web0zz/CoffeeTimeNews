@@ -34,7 +34,4 @@ dependencies {
 
     // JavaX Inject
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
-
-    // Testing
-    testImplementation "junit:junit:$jUnitVersion"
 }
