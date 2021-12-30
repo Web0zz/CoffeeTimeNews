@@ -42,5 +42,12 @@
 ## Development Setup 💻
 You need to use latest [Canary Version](https://developer.android.com/studio/preview) of Android Studio 4.2 or newer to be able to build the app.
 
+## How to Build :hammer_and_wrench:
+Create ```key.properties``` file on root and add
+```
+API_TOKEN="your_token_from_api"
+```
+How to get token -> [CoffeeTimeNewsApi](https://github.com/Web0zz/CoffeeTimeNewsApi)
+
 
 
