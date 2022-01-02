@@ -5,17 +5,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import com.web0z.coffeetimenews.R
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
-import com.web0z.coffeetimenews.ui.theme.lightRed
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.web0z.coffeetimenews.R
+import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
+import com.web0z.coffeetimenews.ui.theme.lightRed
+import com.web0z.coffeetimenews.ui.view.Screen
 
 @Composable
 fun ErrorPage(
@@ -23,12 +24,12 @@ fun ErrorPage(
     navController: NavController
 ) {
     Scaffold {
-        Content(errorMessage, navController)
+        ErrorContent(errorMessage, navController)
     }
 }
 
 @Composable
-private fun Content(
+private fun ErrorContent(
     errorMessage: String,
     navController: NavController
 ) {
@@ -66,7 +67,7 @@ private fun Content(
             )
             Button(
                 onClick = {
-                    navController.navigateUp()
+                    navigateToHome(navController)
                 },
                 colors = ButtonDefaults.textButtonColors(
                     backgroundColor = MaterialTheme.colors.onPrimary
@@ -81,6 +82,14 @@ private fun Content(
                     color = MaterialTheme.colors.primaryVariant
                 )
             }
+        }
+    }
+}
+
+private fun navigateToHome(navController: NavController) {
+    navController.navigate(Screen.Home.route) {
+        popUpTo(Screen.Home.route) {
+            inclusive = true
         }
     }
 }

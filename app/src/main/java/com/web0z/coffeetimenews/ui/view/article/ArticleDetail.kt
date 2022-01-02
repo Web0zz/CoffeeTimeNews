@@ -20,21 +20,27 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.LocalImageLoader
+import coil.compose.rememberImagePainter
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.MainActivity
-import com.web0z.coffeetimenews.ui.theme.*
+import com.web0z.coffeetimenews.ui.theme.Andada
+import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
+import com.web0z.coffeetimenews.ui.theme.darkTextColor
 import com.web0z.coffeetimenews.ui.util.AppNameText
-import com.web0z.coffeetimenews.ui.viewmodel.ArticleDetailViewModel
 import com.web0z.core.model.Article
 import dagger.hilt.android.EntryPointAccessors
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @ExperimentalFoundationApi
+@ExperimentalCoilApi
 @Composable
 fun ArticleDetail(
     navController: NavController,
@@ -42,7 +48,7 @@ fun ArticleDetail(
 ) {
     val article = viewModel.state.collectAsState(initial = null).value
 
-    if(article == null) {
+    if (article == null) {
         //TODO loading state
     } else {
         if (!article.loading && !article.hasError) {
@@ -64,7 +70,11 @@ fun ArticleDetail(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class, com.google.accompanist.pager.ExperimentalPagerApi::class)
+@ExperimentalPagerApi
+@ExperimentalFoundationApi
+@ExperimentalCoilApi
+@InternalCoroutinesApi
+@ExperimentalCoroutinesApi
 @Composable
 fun articleDetailViewModel(articleId: String): ArticleDetailViewModel {
     val factory = EntryPointAccessors.fromActivity(
@@ -101,6 +111,7 @@ private fun BodyText(article: Article) {
     }
 }
 
+@ExperimentalCoilApi
 @Composable
 private fun ArticleHead(article: Article) {
     Box(
@@ -115,7 +126,14 @@ private fun ArticleHead(article: Article) {
                 .verticalScroll(rememberScrollState())
         ) {
             Image(
-                painter = rememberCoilPainter(article.article_image, fadeIn = true),
+                painter = rememberImagePainter(
+                    data = article.article_image,
+                    imageLoader = LocalImageLoader.current,
+                    builder = {
+                        crossfade(true)
+                        placeholder(0)
+                    }
+                ),
                 contentDescription = null,
                 modifier = Modifier
                     .width(411.dp)
@@ -165,7 +183,14 @@ private fun ArticleHead(article: Article) {
                         )
                 ) {
                     Image(
-                        painter = rememberCoilPainter(article.writer_image),
+                        painter = rememberImagePainter(
+                            data = article.writer_image,
+                            imageLoader = LocalImageLoader.current,
+                            builder = {
+                                crossfade(true)
+                                placeholder(0)
+                            }
+                        ),
                         contentDescription = null,
                         modifier = Modifier
                             .clip(shape = RoundedCornerShape(15.dp))

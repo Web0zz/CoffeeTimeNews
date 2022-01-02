@@ -27,7 +27,11 @@ fun BoxScope.AppNameText(
         text = stringResource(id = R.string.coffee),
         style = smalltextStyle.merge(
             TextStyle(
-                shadow = Shadow(color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f), Offset(0f, 4f), 15f)
+                shadow = Shadow(
+                    color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f),
+                    Offset(0f, 4f),
+                    15f
+                )
             )
         ),
         color = color,
@@ -39,7 +43,11 @@ fun BoxScope.AppNameText(
         textAlign = TextAlign.Center,
         style = bigtextStyle.merge(
             TextStyle(
-                shadow = Shadow(color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f), Offset(0f, 4f), 15f)
+                shadow = Shadow(
+                    color = MaterialTheme.colors.onPrimary.copy(alpha = 0.25f),
+                    Offset(0f, 4f),
+                    15f
+                )
             )
         ),
         color = color,

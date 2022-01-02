@@ -10,6 +10,7 @@ sealed class Screen(
 
         const val ARG_ERROR_MESSAGE: String = "errorMessage"
     }
+
     object Detail : Screen("detail/{articleId}", "Article detail") {
         fun route(articleId: String) = "detail/$articleId"
 

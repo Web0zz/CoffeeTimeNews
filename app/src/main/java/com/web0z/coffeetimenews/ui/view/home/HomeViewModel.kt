@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.viewmodel
+package com.web0z.coffeetimenews.ui.view.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,25 +8,28 @@ import com.web0z.core.model.Article
 import com.web0z.core.model.Category
 import com.web0z.core.repository.CoffeeTimeNewsRepository
 import com.web0z.core.repository.ResponseResult
+import com.web0z.core.utils.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository
-): ViewModel() {
+    @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository,
+    private val preferenceManager: PreferenceManager
+) : ViewModel() {
 
     private val selectedCategory = MutableStateFlow(Category.POPULAR)
 
     private val _state = MutableStateFlow(UiState<NewsListViewData>())
-
     val state: StateFlow<UiState<NewsListViewData>>
         get() = _state
 
     private val _pagerNews = MutableStateFlow(UiState<List<Article>>())
-
     val pagerNews: StateFlow<UiState<List<Article>>>
         get() = _pagerNews
 
@@ -58,8 +61,8 @@ class HomeViewModel @Inject constructor(
                         )
                     )
                 }
-                .collect {  result ->
-                    when(result) {
+                .collect { result ->
+                    when (result) {
                         is ResponseResult.Success -> {
                             _state.value =
                                 UiState(
@@ -95,6 +98,12 @@ class HomeViewModel @Inject constructor(
     fun onHomeCategorySelected(category: Category) {
         selectedCategory.value = category
         getArticles(category)
+    }
+
+    fun setDarkMode(enable: Boolean) {
+        viewModelScope.launch {
+            preferenceManager.setDarkMode(enable)
+        }
     }
 }
 

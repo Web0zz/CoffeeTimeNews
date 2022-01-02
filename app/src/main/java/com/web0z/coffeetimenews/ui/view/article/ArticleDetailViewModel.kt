@@ -1,4 +1,4 @@
-package com.web0z.coffeetimenews.ui.viewmodel
+package com.web0z.coffeetimenews.ui.view.article
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,13 +14,16 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class ArticleDetailViewModel @AssistedInject constructor(
     @Repository private val coffeeTimeNewsRepository: CoffeeTimeNewsRepository,
     @Assisted private val articleId: String
-): ViewModel() {
+) : ViewModel() {
     private val _state = MutableStateFlow(UiState<Article>())
 
     val state: StateFlow<UiState<Article>>
@@ -42,15 +45,28 @@ class ArticleDetailViewModel @AssistedInject constructor(
                      * it will try to take data from api by id
                      */
                     coffeeTimeNewsRepository.getArticleByIdFromApi(articleId)
-                        .onStart {  _state.value = UiState(loading = true, error = null, data = null) }
-                        .catch { _state.value = UiState(loading = false, error = it.localizedMessage, data = null) }
+                        .onStart {
+                            _state.value = UiState(loading = true, error = null, data = null)
+                        }
+                        .catch {
+                            _state.value =
+                                UiState(loading = false, error = it.localizedMessage, data = null)
+                        }
                         .collect { articleResponse ->
-                            when(articleResponse) {
+                            when (articleResponse) {
                                 is ResponseResult.Success -> {
-                                    _state.value = UiState(loading = false, error = null, data = articleResponse.data)
+                                    _state.value = UiState(
+                                        loading = false,
+                                        error = null,
+                                        data = articleResponse.data
+                                    )
                                 }
                                 is ResponseResult.Error -> {
-                                    _state.value = UiState(loading = false, error = articleResponse.message, data = null)
+                                    _state.value = UiState(
+                                        loading = false,
+                                        error = articleResponse.message,
+                                        data = null
+                                    )
                                 }
                             }
                         }

@@ -13,7 +13,8 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Singleton
     @Provides
-    fun provideCoffeeTimeNewsDatabase(application: Application) = CoffeeTimeNewsDatabase.getInstance(application)
+    fun provideCoffeeTimeNewsDatabase(application: Application) =
+        CoffeeTimeNewsDatabase.getInstance(application)
 
     @Singleton
     @Provides

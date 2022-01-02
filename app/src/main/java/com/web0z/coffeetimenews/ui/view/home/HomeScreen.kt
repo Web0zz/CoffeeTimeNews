@@ -3,37 +3,39 @@ package com.web0z.coffeetimenews.ui.view.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.util.AppNameText
 import com.web0z.coffeetimenews.ui.view.Screen
-import com.web0z.coffeetimenews.ui.viewmodel.HomeViewModel
 import com.web0z.core.model.Article
 
 @ExperimentalPagerApi
+@ExperimentalCoilApi
 @Composable
 fun HomeScreen(
     navController: NavController,
-    viewModel: HomeViewModel,
-    toggleTheme: () -> Unit
+    viewModel: HomeViewModel
 ) {
+    val isInDarkMode = isSystemInDarkTheme()
+
     Scaffold(
-        // scaffoldState = scaffoldState,
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            TopBar(toggleTheme)
+            TopBar(viewModel, isInDarkMode)
         },
         content = {
             BodyContent(
@@ -46,7 +48,7 @@ fun HomeScreen(
 }
 
 @Composable
-private fun TopBar(toggleTheme: () -> Unit) {
+private fun TopBar(viewModel: HomeViewModel, isInDarkMode: Boolean) {
     Box(
         Modifier
             .padding(
@@ -66,7 +68,7 @@ private fun TopBar(toggleTheme: () -> Unit) {
         }
         IconButton(
             onClick = {
-                toggleTheme()
+                viewModel.setDarkMode(!isInDarkMode)
             },
             modifier = Modifier
                 .align(Alignment.CenterEnd)
@@ -80,6 +82,7 @@ private fun TopBar(toggleTheme: () -> Unit) {
 }
 
 @ExperimentalPagerApi
+@ExperimentalCoilApi
 @Composable
 private fun BodyContent(
     navController: NavController,
@@ -119,7 +122,7 @@ private fun BodyContent(
             onCategorySelected = {
                 viewModel.onHomeCategorySelected(it)
             },
-            navController = navController,
+            navController = navController
         )
     }
 }

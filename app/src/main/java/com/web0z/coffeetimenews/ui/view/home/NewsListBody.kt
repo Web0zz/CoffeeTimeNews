@@ -5,32 +5,23 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.LocalImageLoader
 import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
-import com.google.accompanist.coil.rememberCoilPainter
-import com.google.accompanist.imageloading.LoadPainterDefaults
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.web0z.coffeetimenews.R
-import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
-import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTypography
 import com.web0z.coffeetimenews.ui.theme.lightBrown2
-import com.web0z.coffeetimenews.ui.viewmodel.HomeViewModel
-import com.web0z.core.model.Category
+import com.web0z.coffeetimenews.ui.view.Screen
 import com.web0z.core.model.Article
+import com.web0z.core.model.Category
 
 @ExperimentalPagerApi
 @Composable
@@ -40,33 +31,30 @@ fun NewsListBody(
     onCategorySelected: (Category) -> Unit,
     navController: NavController
 ) {
-    val articlesState = viewModel.state.collectAsState(initial = null).value
+    val articlesState = viewModel.state.collectAsState().value
 
-    if(articlesState != null) {
-        when {
-            articlesState.initialLoad || articlesState.loading -> {
-                // TODO loading state will come
-            }
-            articlesState.hasError -> {
-                navController.navigate(
-                    Screen.Error.route(
-                        articlesState.error ?: stringResource(id = R.string.default_error_message)
-                    )
-                )
-            }
-            else -> {
-                NewsCategoryTabs(
-                    articlesState.data!!.selectedHomeCategory,
-                    modifier,
-                    onCategorySelected
-                )
+    var isGetError by rememberSaveable(key = "getErrorAlready") { mutableStateOf(false) }
 
-                // TODO will change with lazyColumn
-                NewsList(
-                    navController,
-                    articlesState.data.articlesList
-                )
-            }
+    when {
+        articlesState.initialLoad || articlesState.loading -> {
+            // TODO loading state will come
+        }
+        !isGetError && articlesState.hasError -> {
+            isGetError = true
+            navigateToError(navController, articlesState.error)
+        }
+        else -> {
+            NewsCategoryTabs(
+                articlesState.data!!.selectedHomeCategory,
+                modifier,
+                onCategorySelected
+            )
+
+            // TODO will change with lazyColumn
+            NewsList(
+                navController,
+                articlesState.data.articlesList
+            )
         }
     }
 }
@@ -113,7 +101,6 @@ private fun NewsCategoryTabs(
                 .background(MaterialTheme.colors.onPrimary)
         )
     }
-
 
     ScrollableTabRow(
         selectedTabIndex = selectedIndex,
@@ -169,7 +156,7 @@ fun ArticleListContent(
                         data = article.article_image,
                         imageLoader = LocalImageLoader.current,
                         builder = {
-                            if (true == true) this.crossfade(LoadPainterDefaults.FadeInTransitionDuration)
+                            crossfade(true)
                             placeholder(0)
                         }
                     ),
@@ -203,6 +190,14 @@ fun ArticleListContent(
                     )
                 }
             }
+        }
+    }
+}
+
+private fun navigateToError(navController: NavController, errorMessage: String?) {
+    navController.navigate(Screen.Error.route(errorMessage ?: "Something weird happened!")) {
+        popUpTo(Screen.Home.route) {
+            inclusive = true
         }
     }
 }

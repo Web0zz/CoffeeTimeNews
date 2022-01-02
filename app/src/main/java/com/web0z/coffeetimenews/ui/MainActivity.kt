@@ -12,23 +12,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.lifecycleScope
+import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.web0z.coffeetimenews.R
 import com.web0z.coffeetimenews.ui.navigation.CoffeeTimeNavigation
 import com.web0z.coffeetimenews.ui.theme.CoffeeTimeNewsTheme
-import com.web0z.coffeetimenews.ui.viewmodel.ArticleDetailViewModel
+import com.web0z.coffeetimenews.ui.view.article.ArticleDetailViewModel
 import com.web0z.core.utils.PreferenceManager
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.components.ActivityComponent
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.InternalCoroutinesApi
 import javax.inject.Inject
 
 @AndroidEntryPoint
 @ExperimentalFoundationApi
+@ExperimentalCoroutinesApi
+@ExperimentalCoilApi
 @ExperimentalPagerApi
+@InternalCoroutinesApi
 class MainActivity : AppCompatActivity() {
 
     @Inject
@@ -53,24 +57,17 @@ class MainActivity : AppCompatActivity() {
     private fun CoffeeTimeNewsMain() {
         val darkMode by preferenceManager.uiModeFlow.collectAsState(initial = isSystemInDarkTheme())
 
-        val toggleTheme: () -> Unit = {
-            lifecycleScope.launch { preferenceManager.setDarkMode(!darkMode) }
-        }
-
         CoffeeTimeNewsTheme(darkTheme = darkMode) {
-            // A surface container using the 'background' color from the theme
             Surface(color = MaterialTheme.colors.background) {
-                CoffeeTimeNavigation(
-                    toggleTheme = toggleTheme
-                )
+                CoffeeTimeNavigation()
             }
         }
     }
 
     private fun observeUiTheme() {
         lifecycleScope.launchWhenStarted {
-            preferenceManager.uiModeFlow.collect {
-                val mode = when (it) {
+            preferenceManager.uiModeFlow.collect { isDarkMode ->
+                val mode = when (isDarkMode) {
                     true -> AppCompatDelegate.MODE_NIGHT_YES
                     false -> AppCompatDelegate.MODE_NIGHT_NO
                 }

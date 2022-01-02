@@ -14,7 +14,7 @@ android {
         minSdkVersion ProjectConfig.minSdkVersion
         targetSdkVersion ProjectConfig.targetSdkVersion
 
-        buildConfigField "String", "API_TOKEN",localProperties['API_TOKEN']
+        buildConfigField "String", "API_TOKEN", localProperties['API_TOKEN']
     }
 
 
