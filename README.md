@@ -12,8 +12,10 @@
 
 ## Screenshots 📱
 ### 🌞 Light Mode
+![lightmode](https://user-images.githubusercontent.com/61796073/147889225-b4228407-3807-4d6c-b5f4-ee7d6406fedb.jpg)
 
 ### 🌙 Dark Mode
+![darkmode](https://user-images.githubusercontent.com/61796073/147889227-1153a764-7a0d-47c1-a1a8-3055603c6123.jpg)
 
 ## Libraries & Tools 🛠️
 - [Kotlin](https://kotlinlang.org/docs/home.html)
